@@ -1,0 +1,67 @@
+[
+    {
+        "model": "decoration_app.decoration",
+        "pk": 1,
+        "fields": {
+            "name": "Edible Glitter",
+            "type": "Glitter",
+            "color": "Silver",
+            "description": "Adds a sparkling touch to cookies.",
+            "image": "https://example.com/images/edible_glitter.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "decoration_app.decoration",
+        "pk": 2,
+        "fields": {
+            "name": "Royal Icing",
+            "type": "Icing",
+            "color": "White",
+            "description": "Classic icing for cookie decorating.",
+            "image": "https://example.com/images/royal_icing.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "decoration_app.decoration",
+        "pk": 3,
+        "fields": {
+            "name": "Sugar Pearls",
+            "type": "Pearl",
+            "color": "Pink",
+            "description": "Elegant sugar pearls for decoration.",
+            "image": "https://example.com/images/sugar_pearls.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "decoration_app.decoration",
+        "pk": 4,
+        "fields": {
+            "name": "Fondant Flowers",
+            "type": "Fondant",
+            "color": "Yellow",
+            "description": "Handmade fondant flowers.",
+            "image": "https://example.com/images/fondant_flowers.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "decoration_app.decoration",
+        "pk": 5,
+        "fields": {
+            "name": "Chocolate Drizzle",
+            "type": "Chocolate",
+            "color": "Brown",
+            "description": "Rich chocolate drizzle for cookies.",
+            "image": "https://example.com/images/chocolate_drizzle.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    }
+]

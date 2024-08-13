@@ -1,0 +1,62 @@
+[
+    {
+        "model": "topping_app.topping",
+        "pk": 1,
+        "fields": {
+            "name": "Chocolate Chips",
+            "type": "Chocolate",
+            "description": "Miniature chocolate chips for cookies.",
+            "image": "https://example.com/images/chocolate_chips.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "topping_app.topping",
+        "pk": 2,
+        "fields": {
+            "name": "Sprinkles",
+            "type": "Sugar",
+            "description": "Colorful sugar sprinkles.",
+            "image": "https://example.com/images/sprinkles.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "topping_app.topping",
+        "pk": 3,
+        "fields": {
+            "name": "Nuts",
+            "type": "Nut",
+            "description": "Crushed nuts for a crunchy topping.",
+            "image": "https://example.com/images/nuts.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "topping_app.topping",
+        "pk": 4,
+        "fields": {
+            "name": "Caramel Drizzle",
+            "type": "Syrup",
+            "description": "Sweet caramel syrup for drizzling.",
+            "image": "https://example.com/images/caramel_drizzle.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "topping_app.topping",
+        "pk": 5,
+        "fields": {
+            "name": "Coconut Flakes",
+            "type": "Coconut",
+            "description": "Shredded coconut for a tropical taste.",
+            "image": "https://example.com/images/coconut_flakes.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    }
+]

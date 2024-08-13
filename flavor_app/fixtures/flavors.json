@@ -1,0 +1,57 @@
+[
+    {
+        "model": "flavor_app.flavor",
+        "pk": 1,
+        "fields": {
+            "name": "Vanilla",
+            "description": "Classic vanilla flavor with natural extracts.",
+            "image": "https://example.com/images/vanilla.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "flavor_app.flavor",
+        "pk": 2,
+        "fields": {
+            "name": "Chocolate",
+            "description": "Rich and creamy chocolate flavor.",
+            "image": "https://example.com/images/chocolate.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "flavor_app.flavor",
+        "pk": 3,
+        "fields": {
+            "name": "Strawberry",
+            "description": "Sweet and tangy strawberry flavor.",
+            "image": "https://example.com/images/strawberry.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "flavor_app.flavor",
+        "pk": 4,
+        "fields": {
+            "name": "Lemon",
+            "description": "Refreshing and zesty lemon flavor.",
+            "image": "https://example.com/images/lemon.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "flavor_app.flavor",
+        "pk": 5,
+        "fields": {
+            "name": "Mint",
+            "description": "Cool and invigorating mint flavor.",
+            "image": "https://example.com/images/mint.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    }
+]

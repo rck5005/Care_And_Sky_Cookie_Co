@@ -1,0 +1,72 @@
+[
+    {
+        "model": "cookie_cutter_app.cookiecutter",
+        "pk": 1,
+        "fields": {
+            "name": "Heart",
+            "shape": "Heart",
+            "material": "Stainless Steel",
+            "size": "3 inches",
+            "description": "Perfect for Valentine's Day cookies.",
+            "image": "https://example.com/images/heart_cutter.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "cookie_cutter_app.cookiecutter",
+        "pk": 2,
+        "fields": {
+            "name": "Star",
+            "shape": "Star",
+            "material": "Plastic",
+            "size": "4 inches",
+            "description": "Great for holiday cookies.",
+            "image": "https://example.com/images/star_cutter.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "cookie_cutter_app.cookiecutter",
+        "pk": 3,
+        "fields": {
+            "name": "Circle",
+            "shape": "Circle",
+            "material": "Silicone",
+            "size": "2 inches",
+            "description": "Versatile round cookie cutter.",
+            "image": "https://example.com/images/circle_cutter.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "cookie_cutter_app.cookiecutter",
+        "pk": 4,
+        "fields": {
+            "name": "Flower",
+            "shape": "Flower",
+            "material": "Metal",
+            "size": "3.5 inches",
+            "description": "Creates beautiful flower-shaped cookies.",
+            "image": "https://example.com/images/flower_cutter.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "cookie_cutter_app.cookiecutter",
+        "pk": 5,
+        "fields": {
+            "name": "Square",
+            "shape": "Square",
+            "material": "Stainless Steel",
+            "size": "2.5 inches",
+            "description": "Ideal for making neat, square cookies.",
+            "image": "https://example.com/images/square_cutter.png",
+            "created_at": "2024-08-13T00:00:00Z",
+            "updated_at": "2024-08-13T00:00:00Z"
+        }
+    }
+]
