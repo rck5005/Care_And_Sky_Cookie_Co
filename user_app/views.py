@@ -61,7 +61,40 @@ class Info(TokenReq):
                 "email":request.user.email
                 }, status=HTTP_200_OK)
             # return Response({"email":user.email}, status=HTTP_200_OK)
-        except Exception as e:
-            return Response(e, status=HTTP_400_BAD_REQUEST)
+        except ValidationError as e:
+            print(e)
+            return Response(e.messages, status=HTTP_400_BAD_REQUEST)
     
+    def put(self, request):
+        try:
+            #check for dislpay_name and address
+            data = request.data.copy()
+            ruser = request.user
+            ruser.display_name = data.get("display_name", ruser.display_name)
+            ruser.address = data.get("address", ruser.address)
+
+            #authenticate credential and update if authenticated
+            cur_pass = data.get("password")
+            if cur_pass and data.get("new_password"):
+                auth_user = authenticate(username = ruser.username, password = cur_pass)
+                if auth_user == ruser:
+                    ruser.set_password(data.get("new_password"))
+
+            
+            #save password
+            ruser.full_clean()
+            ruser.save()
+            return Response({"display_name": ruser.display_name, "address":ruser.address})
+        except ValidationError as e:
+            print(e)
+            return Response(e.messages, status=HTTP_400_BAD_REQUEST)
     
+class Delete(TokenReq):
+    def delete(self, request):
+        try:
+            user = request.user
+            user.delete()
+            return Response({"message": "User deleted successfully."}, status=HTTP_204_NO_CONTENT)
+        except ValidationError as e:
+            print(e)
+            return Response(e.messages, status=HTTP_400_BAD_REQUEST)

@@ -1,0 +1,23 @@
+TO DO BEFORE FINAL 
+
+VALIDATIONS:
+
+--models.py for: cookie_creation, cookie_cutter, deocration, flavor, topping, user_app
+
+--views.py for: user_app
+
+
+
+Confirmation Template for Delete Account:
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Confirm Delete</h2>
+    <p>Are you sure you want to delete your account?</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirm</button>
+        <a href="{% url 'home' %}">Cancel</a>
+    </form>
+{% endblock %}
