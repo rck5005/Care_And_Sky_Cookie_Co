@@ -3,7 +3,7 @@ from .models import CookieCreation
 from flavor_app.serializers import FlavorSerializer
 from cookie_cutter_app.serializers import CookieCutterSerializer
 from topping_app.serializers import ToppingSerializer
-from decoration_app.seriializers import DecorationSerializer
+from decoration_app.serializers import DecorationSerializer
 
 class CookieCreationSerializer(serializers.ModelSerializer):
     flavor = FlavorSerializer()

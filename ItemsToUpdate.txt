@@ -4,7 +4,7 @@ VALIDATIONS:
 
 --models.py for: cookie_creation, cookie_cutter, deocration, flavor, topping, user_app
 
---views.py for: user_app
+--views.py for: user_app, cookie_cutter_app, flavor_app, decoration_app, topping_app
 
 
 

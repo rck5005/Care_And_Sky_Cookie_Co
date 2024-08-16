@@ -1,3 +1,15 @@
+Test User Signup:
+
+post: http://127.0.0.1:8000/api/v1/users/signup/
+
+{"email": "fr@fr.com", "password":"fr"}
+
+{
+  "user": "fr@fr.com",
+  "token": "ef9db4069f0357aeabebf215659753bac7cd7472"
+}
+
+
 Test User Logins:
 
 post: http://127.0.0.1:8000/api/v1/users/login/
