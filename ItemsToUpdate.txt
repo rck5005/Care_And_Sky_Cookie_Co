@@ -8,6 +8,15 @@ VALIDATIONS:
 
 
 
+
+user can create user_cookie_creation
+user_cookie_creation saves to cookie creation, but is automatically private
+only way to make public is if the cookie creation was previously purchased
+
+STRETCH GOAL: keep track of how many times the cookie was purchased
+
+
+
 Confirmation Template for Delete Account:
 {% extends "base.html" %}
 

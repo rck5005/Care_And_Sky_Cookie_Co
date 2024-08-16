@@ -1,0 +1,62 @@
+[
+    {
+        "model": "cookie_creation_app.cookiecreation",
+        "pk": 1,
+        "fields": {
+            "name": "Holiday Special",
+            "flavor": 1,
+            "cookie_cutter": 2,
+            "topping": 3,
+            "decoration": 4,
+            "prev_purchased": false
+        }
+    },
+    {
+        "model": "cookie_creation_app.cookiecreation",
+        "pk": 2,
+        "fields": {
+            "name": "Chocolate Lover",
+            "flavor": 2,
+            "cookie_cutter": 1,
+            "topping": 2,
+            "decoration": 5,
+            "prev_purchased": true
+        }
+    },
+    {
+        "model": "cookie_creation_app.cookiecreation",
+        "pk": 3,
+        "fields": {
+            "name": "Vanilla Dream",
+            "flavor": 3,
+            "cookie_cutter": 4,
+            "topping": 1,
+            "decoration": 3,
+            "prev_purchased": false
+        }
+    },
+    {
+        "model": "cookie_creation_app.cookiecreation",
+        "pk": 4,
+        "fields": {
+            "name": "Berry Blast",
+            "flavor": 4,
+            "cookie_cutter": 3,
+            "topping": 4,
+            "decoration": 2,
+            "prev_purchased": true
+        }
+    },
+    {
+        "model": "cookie_creation_app.cookiecreation",
+        "pk": 5,
+        "fields": {
+            "name": "Lemon Zest",
+            "flavor": 5,
+            "cookie_cutter": 5,
+            "topping": 5,
+            "decoration": 1,
+            "prev_purchased": true
+        }
+    }
+]

@@ -67,7 +67,7 @@ class Info(TokenReq):
     
     def put(self, request):
         try:
-            #check for dislpay_name and address
+            #check for display_name and address
             data = request.data.copy()
             ruser = request.user
             ruser.display_name = data.get("display_name", ruser.display_name)
