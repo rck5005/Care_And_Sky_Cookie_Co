@@ -27,4 +27,6 @@ urlpatterns = [
     path('api/v1/decorations/', include('decoration_app.urls')),
 
     path('api/v1/cookiecreations/', include('cookie_creation_app.urls')),
+
+    path('api/v1/mycookies/', include('user_cookie_creation_app.urls')),
 ]

@@ -1,10 +1,22 @@
 TO DO BEFORE FINAL 
 
+REQUIREMENTS:
+user remove from favorites
+user delete a user_cookie_creation
+--previously purchased
+--not previously purchased
+
+
+just created a serializer for user while i was creating urls and views for user_cookie_creation.
+might have to go back and change the user views since I didn't use a serializer for it. 
+--going to see if i can complete the user_cookie_creation portion here
+
+
 VALIDATIONS:
 
 --models.py for: cookie_creation, cookie_cutter, deocration, flavor, topping, user_app
 
---views.py for: user_app, cookie_cutter_app, flavor_app, decoration_app, topping_app
+--views.py for: user_app, cookie_cutter_app, flavor_app, decoration_app, topping_app, user_cookie_creation
 
 
 
