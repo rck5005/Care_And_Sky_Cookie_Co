@@ -29,4 +29,6 @@ urlpatterns = [
     path('api/v1/cookiecreations/', include('cookie_creation_app.urls')),
 
     path('api/v1/mycookies/', include('user_cookie_creation_app.urls')),
+
+    path('api/v1/mailchimp/', include('mailchimp_app.urls')),
 ]

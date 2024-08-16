@@ -46,3 +46,28 @@ Confirmation Template for Delete Account:
         <a href="{% url 'home' %}">Cancel</a>
     </form>
 {% endblock %}
+
+
+possibly to mailchimp views for subscribe to introduce serializerclass Subscribe(TokenReq):
+    def post(self, request):
+        email = request.data.get('email')
+        first_name = request.data.get('first_name')
+        last_name = request.data.get('last_name')
+        
+        if not email:
+            return Response({"error": "Email is required"}, status=400)
+        
+        mailchimp_service = MailchimpService()
+        result = mailchimp_service.add_member_to_list(email, first_name, last_name)
+        
+        # Assuming the user is authenticated and you want to include their details in the response
+        user = request.user
+        user_serializer = UserSerializer(user)
+        
+        if result:
+            return Response({
+                "message": "Successfully subscribed",
+                "user": user_serializer.data
+            }, status=200)
+        else:
+            return Response({"error": "Failed to subscribe"}, status=400)

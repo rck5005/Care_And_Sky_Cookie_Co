@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'cookie_cutter_app',
     'topping_app',
     'decoration_app',
+    'mailchimp_app',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user_app.User'
+
+
+MAILCHIMP_API_KEY = 'd75c74d2d61b846b382172b717c5e2c5-us13'
+MAILCHIMP_SERVER_PREFIX = 'us13'  # e.g., 'us19'
+MAILCHIMP_LIST_ID = '963aaee84a'
+
+OPENAI_API_KEY = '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'
