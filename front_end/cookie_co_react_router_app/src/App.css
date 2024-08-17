@@ -1,0 +1,25 @@
+/* App.css */
+
+.app-container {
+  margin: 0;
+  padding: 0;
+}
+
+.app-container h1,
+.app-container header {
+  margin: 0;
+  padding: 0;
+  text-align: center; /* Optional: Centers the text */
+}
+
+.app-container h1 {
+  padding-top: 10px; /* Optional: Adds a slight top padding */
+}
+
+/* Additional styles for header component */
+header {
+  display: flex;
+  align-items: center; /* Align items vertically centered */
+  justify-content: space-between; /* Optional: Distribute space between elements */
+  padding: 10px; /* Optional: Padding around header content */
+}

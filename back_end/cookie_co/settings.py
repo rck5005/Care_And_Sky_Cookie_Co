@@ -146,3 +146,5 @@ MAILCHIMP_SERVER_PREFIX = 'us13'  # e.g., 'us19'
 MAILCHIMP_LIST_ID = '963aaee84a'
 
 OPENAI_API_KEY = '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'
+
+# AIzaSyCx0cbNuxZgpadR3c2Cicfa6YC_Jv1Gy3o

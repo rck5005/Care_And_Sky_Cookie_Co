@@ -59,3 +59,13 @@ http://127.0.0.1:8000/api/v1/chatgpt/
 {  
   "prompt": "can you tell you helped me with this api call?"
 }
+
+
+http://127.0.0.1:8000/api/v1/mailchimp/subscribe/
+
+{"email": "fr10@fr.com", "first_name":"fr1", "last_name":"fr2"}
+
+
+post: http://127.0.0.1:8000/api/v1/chatgpt/
+
+{"prompt": "insert your question or concern here"}
