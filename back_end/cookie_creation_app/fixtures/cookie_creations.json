@@ -8,7 +8,8 @@
             "cookie_cutter": 2,
             "topping": 3,
             "decoration": 4,
-            "prev_purchased": false
+            "prev_purchased": false,
+            "image": "https://example.com/images/holiday_special.png"
         }
     },
     {
@@ -20,7 +21,8 @@
             "cookie_cutter": 1,
             "topping": 2,
             "decoration": 5,
-            "prev_purchased": true
+            "prev_purchased": true,
+            "image": "https://example.com/images/chocolate_lover.png"
         }
     },
     {
@@ -32,7 +34,8 @@
             "cookie_cutter": 4,
             "topping": 1,
             "decoration": 3,
-            "prev_purchased": false
+            "prev_purchased": false,
+            "image": "https://example.com/images/vanilla_dream.png"
         }
     },
     {
@@ -44,7 +47,8 @@
             "cookie_cutter": 3,
             "topping": 4,
             "decoration": 2,
-            "prev_purchased": true
+            "prev_purchased": true,
+            "image": "https://example.com/images/berry_blast.png"
         }
     },
     {
@@ -56,7 +60,8 @@
             "cookie_cutter": 5,
             "topping": 5,
             "decoration": 1,
-            "prev_purchased": true
+            "prev_purchased": true,
+            "image": "https://example.com/images/lemon_zest.png"
         }
     }
 ]

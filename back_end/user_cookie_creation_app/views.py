@@ -27,6 +27,34 @@ class AllUsersCreations(TokenReq):
         except Exception as e:
             return Response({'error': str(e)}, status=HTTP_400_BAD_REQUEST)
         
+class RemoveCreation(TokenReq):
+    def delete(self, request, cookie_creation_id):
+        try:
+            ruser = request.user
+            cookie_creation = CookieCreation.objects.get(id=cookie_creation_id)
+            
+            # Try to get the existing UsersCookieCreation instance
+            user_creation = UsersCookieCreation.objects.filter(
+                user=ruser,
+                cookie_creation=cookie_creation
+            ).first()
+            
+            if user_creation:
+                #seeing if instance of cookie creation was prev_purchased, hence should be kept in database
+                if user_creation.cookie_creation.prev_purchased == False:
+                    user_creation.cookie_creation.delete()
+                    return Response({"message": "Creation deleted successfully."}, status=HTTP_204_NO_CONTENT)
+                else:
+                    # If the instance should be kept in database
+                    user_creation.delete()
+                    return Response({"message": "Creation removed from user."}, status=HTTP_204_NO_CONTENT)
+                
+            else:
+                return Response({'error': 'Cookie creation not found.'}, status=HTTP_404_NOT_FOUND)
+
+        except Exception as e:
+            return Response({'error': str(e)}, status=HTTP_400_BAD_REQUEST)
+        
 class AllUsersFavorites(TokenReq):
     def get(self, request):
         try:

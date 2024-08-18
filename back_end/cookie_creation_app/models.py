@@ -12,3 +12,4 @@ class CookieCreation(models.Model):
     topping = models.ForeignKey(Topping, on_delete=models.CASCADE, null=True, blank=True)
     decoration = models.ForeignKey(Decoration, on_delete=models.CASCADE, null=True, blank=True)
     prev_purchased = models.BooleanField(default=False)
+    image = models.URLField(max_length=200, null=True, blank=True)
