@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x*263l*x3gtb(#f8wp4a2v!k2yd-)dcbn#6mvm4-5!l&#swhx9'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -92,6 +95,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'cookie_co_db',
+        # 'HOST': 'address',  YOU WILL WANT TO PUT ALL THIS IS A .env FILE
+        # 'PORT': '5432'
+        # 'USERNAME': 'NAME'
+        # 'PASSWORD': 'PW'
     }
 }
 
@@ -145,10 +152,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'user_app.User'
 
 
-MAILCHIMP_API_KEY = 'd75c74d2d61b846b382172b717c5e2c5-us13'
+MAILCHIMP_API_KEY = os.environ.get("SECRET_MAILCHIMP_API_KEY")
 MAILCHIMP_SERVER_PREFIX = 'us13'  # e.g., 'us19'
 MAILCHIMP_LIST_ID = '963aaee84a'
 
-OPENAI_API_KEY = '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'
+OPENAI_API_KEY = os.environ.get("SECRET_OPENAI_API_KEY")
 
-# AIzaSyCx0cbNuxZgpadR3c2Cicfa6YC_Jv1Gy3o
+# GEMINI_KEY
