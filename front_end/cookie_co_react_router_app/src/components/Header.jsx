@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/esm/Button';
 import { logOut } from '../utilities';
 
-function Header({ setUser }) {
+function Header({ user, setUser }) {
 
 
     const handleClick = async() => {
@@ -17,6 +17,8 @@ function Header({ setUser }) {
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
           <Container>
+            {user ? (
+            <>
             <Navbar.Brand as={Link} to="/">Care and Sky Cookie Co</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -38,12 +40,17 @@ function Header({ setUser }) {
                   <NavDropdown.Item href="#action/3.4">
                     Separated link
                   </NavDropdown.Item> */}
-                </NavDropdown>
-                <Nav.Link as={Link} to="/login/">Login</Nav.Link>
-                <Nav.Link as={Link} to="/signup/">Sign-Up</Nav.Link>
+                </NavDropdown> 
                 <Button onClick={handleClick} variant="outline-danger">Log Out</Button>
               </Nav>
             </Navbar.Collapse>
+            </>
+            ) : ( 
+            <>
+                <Nav.Link as={Link} to="/login/">Login</Nav.Link>
+                <Nav.Link as={Link} to="/signup/">Sign-Up</Nav.Link>
+            </>
+            )}
           </Container>
         </Navbar>
       );
