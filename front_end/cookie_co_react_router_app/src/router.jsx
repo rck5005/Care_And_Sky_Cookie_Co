@@ -10,12 +10,16 @@ import CreationsPageMake from "./pages/CreationsPageMake.jsx";
 import VariationsPageFlavors from "./pages/VariationsPageFlavors.jsx";
 import VariationsPageDecorations from "./pages/VariationsPageDecorations.jsx";
 import VariationsPageToppings from "./pages/VariationsPageToppings.jsx";
-import VariationsPageCookieCutters from "./pages/VariationsPageCookieCutters.jsx"
+import VariationsPageCookieCutters from "./pages/VariationsPageCookieCutters.jsx";
+import SignUpPage from "./pages/SignUpPage.jsx";
+import LogInPage from "./pages/LogInPage.jsx";
+import { confirmUser } from "./utilities.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    loader: confirmUser,
     children: [
       {
         index: true,
@@ -26,36 +30,44 @@ const router = createBrowserRouter([
         element: <AboutPage />,
       },
       {
-        path: "creations/favorites",
+        path: "creations/favorites/",
         element: <CreationsPageFavorites />,
       },      
       {
-        path: "creations/all",
+        path: "creations/all/",
         element: <CreationsPageAll />,
       },      
       {
-        path: "creations/mine",
+        path: "creations/mine/",
         element: <CreationsPageMy />,
       },      
       {
-        path: "creations/make",
+        path: "creations/make/",
         element: <CreationsPageMake />,
       },
       {
-        path: "variations/flavors",
+        path: "variations/flavors/",
         element: <VariationsPageFlavors />,
       },
       {
-        path: "variations/cookiecutters",
+        path: "variations/cookiecutters/",
         element: <VariationsPageCookieCutters />,
       },
       {
-        path: "variations/toppings",
+        path: "variations/toppings/",
         element: <VariationsPageToppings />,
       },
       {
-        path: "variations/decorations",
+        path: "variations/decorations/",
         element: <VariationsPageDecorations />,
+      },
+      {
+        path: "login/",
+        element: <LogInPage />,
+      },
+      {
+        path: "signup/",
+        element: <SignUpPage />,
       },
     //   {
     //     path: "variations/:name",

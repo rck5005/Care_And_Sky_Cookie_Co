@@ -1,8 +1,12 @@
 import React from 'react'
+import { useOutletContext } from 'react-router-dom'
 
 function HomePage() {
+  const {user} = useOutletContext()
+
   return (
-    <div>HomePage</div>
+    
+    <div>HomePage {user}</div>
   )
 }
 

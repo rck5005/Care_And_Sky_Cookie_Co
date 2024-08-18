@@ -3,6 +3,8 @@ First File
 
 install requirements.txt
 
+BACK END: 
+
 For testing:
 First install fixture data for flavors, cookie_cutters, decorations and toppings
 --python manage.py loaddata flavors.json
@@ -13,3 +15,6 @@ First install fixture data for flavors, cookie_cutters, decorations and toppings
 
 Now install Fixture data for cookie_creations
 ---python manage.py loaddata cookie_creations.json
+
+
+FRONT END:

@@ -26,7 +26,7 @@ class Sign_up(APIView):
             new_user.save()
             login(request, new_user)
             token = Token.objects.create(user = new_user)
-            return Response({"user":new_user.email,"token":token.key}, status=HTTP_201_CREATED)
+            return Response({"user":new_user.display_name,"token":token.key}, status=HTTP_201_CREATED)
         except ValidationError as e:
             print(e)
             return Response(e.messages, status=HTTP_400_BAD_REQUEST)
@@ -39,7 +39,7 @@ class Log_in(APIView):
         if(user):
             login(request, user)
             token, created = Token.objects.get_or_create(user = user)
-            return Response({"token":token.key, "client":user.email}, status=HTTP_200_OK)
+            return Response({"user":user.display_name, "token":token.key}, status=HTTP_200_OK)
         return Response("No user matching credentials", status=HTTP_400_BAD_REQUEST)
     
 class TokenReq(APIView):
@@ -58,7 +58,9 @@ class Info(TokenReq):
     def get(self, request):
         try:
             return Response({
-                "email":request.user.email
+                "user":request.user.display_name,
+                "email":request.user.email,
+                "address":request.user.address,
                 }, status=HTTP_200_OK)
             # return Response({"email":user.email}, status=HTTP_200_OK)
         except ValidationError as e:
