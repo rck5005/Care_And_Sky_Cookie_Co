@@ -23,12 +23,6 @@ const YourCreationDisplay = ({ YourCreation, setYourCreation }) => {
                 )}
             </p>
             <p>
-                <strong>Topping:</strong> {YourCreation.toppingName || 'None selected'}
-                {YourCreation.topping && (
-                    <button onClick={() => handleRemove('topping')}>Remove Topping</button>
-                )}
-            </p>
-            <p>
                 <strong>Cookie Cutter:</strong> {YourCreation.cookieCutterName || 'None selected'}
                 {YourCreation.cookieCutter && (
                     <button onClick={() => handleRemove('cookieCutter')}>Remove Cookie Cutter</button>
@@ -38,6 +32,12 @@ const YourCreationDisplay = ({ YourCreation, setYourCreation }) => {
                 <strong>Decoration:</strong> {YourCreation.decorationName || 'None selected'}
                 {YourCreation.decoration && (
                     <button onClick={() => handleRemove('decoration')}>Remove Decoration</button>
+                )}
+            </p>
+            <p>
+                <strong>Topping:</strong> {YourCreation.toppingName || 'None selected'}
+                {YourCreation.topping && (
+                    <button onClick={() => handleRemove('topping')}>Remove Topping</button>
                 )}
             </p>
         </div>

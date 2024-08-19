@@ -2,7 +2,7 @@ import React from 'react'
 import ItemCard from './ItemCard'
 import '../App.css'
 
-const ListItems = ({ title, items, buttonText, onButtonClick }) => {
+const ListItems = ({ title, items, buttonText, onButtonClick, showFavoriteButton }) => {
     return (
         <div>
             <h2>{title}</h2>
@@ -19,6 +19,8 @@ const ListItems = ({ title, items, buttonText, onButtonClick }) => {
                             image={item.image}
                             buttonText={buttonText}
                             onButtonClick={onButtonClick}
+                            is_favorite={item.is_favorite}
+                            showFavoriteButton={showFavoriteButton}
                         />
                     ))
                 )}

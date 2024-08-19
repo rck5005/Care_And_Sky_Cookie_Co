@@ -1,5 +1,6 @@
 import React from 'react'
 import useFetchData from './useFetchData'
+import useFavoriteData from './UseFavoriteData';
 import ListItems from './ListItems'
 
 
@@ -23,11 +24,6 @@ const CookieCuttersList = () => {
 const ToppingsList = () => {
     const toppings = useFetchData('toppings/');
     return <ListItems title="Toppings" items={toppings} />;
-};
-
-const CreationsList = () => {
-    const creationsList = useFetchData('cookiecreations/all/');
-    return <ListItems title="Creations" items={creationsList} />;
 };
 
 //WITH BUTTONS
@@ -152,22 +148,8 @@ const CookieCuttersListWithButton = ({ YourCreation, setYourCreation }) => {
     );
 };
 
-const MyCreationsList = () => {
-    const myCookiesAll = useFetchData('mycookies/all/');
-
-    // Transform the data to match the fields in the associated table to ListItems function
-    const transformedData = myCookiesAll.map(item => ({
-        id: item.cookie_creation.id,
-        name: item.cookie_creation.name,
-        description: item.cookie_creation.description,
-        image: item.cookie_creation.image,
-    }));
-
-    return <ListItems title="My Creations" items={transformedData} />;
-};
-
 const MyFavoritesList = () => {
-    const myFavorites = useFetchData('mycookies/favorites/');
+    const { data: myFavorites, addFavorite, removeFavorite } = useFavoriteData('mycookies/favorites/');
 
     // Transform the data to match the fields in the associated table to ListItems function
     const transformedData = myFavorites.map(item => ({
@@ -175,13 +157,104 @@ const MyFavoritesList = () => {
         name: item.cookie_creation.name,
         description: item.cookie_creation.description,
         image: item.cookie_creation.image,
+        is_favorite: item.is_favorite,
     }));
 
-    return <ListItems title="My Creations" items={transformedData} />;
+    const handleButtonClick = (id) => {
+        // Toggle favorite state
+        const item = transformedData.find(item => item.id === id);
+        if (item.is_favorite) {
+            removeFavorite(id);
+            alert(`${item.name} removed from favorites.`);
+        } else {
+            addFavorite(id);
+            alert(`${item.name} added to favorites.`);
+        }
+    };
+
+    return (
+        <ListItems
+            title="My Favorites"
+            items={transformedData}
+            onButtonClick={handleButtonClick}
+            showFavoriteButton={true}
+        />
+    );
 };
 
-export { DecorationsList, FlavorsList, CookieCuttersList, ToppingsList, CreationsList, 
+const CreationsList = () => {
+    // const { data: allCreationsList } = useFetchData('cookiecreations/all/');
+    // const { data: favoritesList } = useFetchData('mycookies/favorites/');
+
+    const { data: creationsList, addFavorite, removeFavorite } = useFavoriteData('cookiecreations/all/');
+
+
+
+    //I need to cross each item in "creationsList" with the current users "favorite" items, then 
+    //render the creations/all/ page with that data.
+    const handleButtonClick = (id, is_favorite) => {
+        // Toggle favorite state
+        console.log("is favorite: ", creationsList)
+        if (is_favorite) {
+            // removeFavorite(id);
+            // alert(`${item.name} removed from favorites.`);
+
+            alert(`This item is already in your favorites!  You must love this creation <3.`);
+
+        } else {
+            addFavorite(id);
+            alert(`This item added to favorites.`);
+        }
+    };
+
+    return (
+        <ListItems
+            title="Creations"
+            items={creationsList}
+            onButtonClick={handleButtonClick}
+            showFavoriteButton={true}            
+        />
+    );
+};
+
+
+const MyCreationsList = () => {
+    const { data: myCookiesAll, addFavorite, removeFavorite } = useFavoriteData('mycookies/all/');
+
+    // Transform the data to match the fields in the associated table to ListItems function
+    const transformedData = myCookiesAll.map(item => ({
+        id: item.cookie_creation.id,
+        name: item.cookie_creation.name,
+        description: item.cookie_creation.description,
+        image: item.cookie_creation.image,
+        is_favorite: item.is_favorite,
+    }));
+
+    const handleButtonClick = (id) => {
+        // Toggle favorite state
+        const item = transformedData.find(item => item.id === id);
+        if (item.is_favorite) {
+            removeFavorite(id);
+            alert(`${item.name} removed from favorites.`);
+        } else {
+            addFavorite(id);
+            alert(`${item.name} added to favorites.`);
+        }
+    };
+
+    return (
+        <ListItems
+            title="My Creations"
+            items={transformedData}
+            onButtonClick={handleButtonClick}
+            showFavoriteButton={true}
+        />
+    );
+};
+
+
+export { DecorationsList, FlavorsList, CookieCuttersList, ToppingsList,  
     DecorationsListWithButton, FlavorsListWithButton, 
     ToppingsListWithButton, CookieCuttersListWithButton,
-    MyCreationsList, MyFavoritesList
+    MyFavoritesList, CreationsList, MyCreationsList
 };

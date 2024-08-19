@@ -3,6 +3,12 @@ TO DO BEFORE FINAL
 REQUIREMENTS:
 user remove from favorites
 
+lists.jsx line 193.
+--currently creations/all/ "add to favorites" button doesn't work
+-----issue is cookiecreation doesn't have "is_favorite", will need to 
+-----compare each creation with the creations in the users "favorites" table and 
+-----rander the button that way.  
+
 
 VALIDATIONS:
 
