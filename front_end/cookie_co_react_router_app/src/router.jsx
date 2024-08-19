@@ -42,10 +42,6 @@ const router = createBrowserRouter([
         element: <CreationsPageMy />,
       },      
       {
-        path: "creations/make/",
-        element: <CreationsPageMake />,
-      },
-      {
         path: "variations/flavors/",
         element: <VariationsPageFlavors />,
       },
@@ -62,6 +58,10 @@ const router = createBrowserRouter([
         element: <VariationsPageDecorations />,
       },
       {
+        path: "makecreation/",
+        element: <CreationsPageMake />,
+      },
+      {
         path: "login/",
         element: <LogInPage />,
       },
@@ -72,10 +72,6 @@ const router = createBrowserRouter([
     //   {
     //     path: "variations/:name",
     //     element: <VariationsPage />,
-    //   },
-    //   {
-    //     path: "login/",
-    //     element: <MissingPokemonPage />,
     //   },
     ],
     errorElement:<Error404Page />,

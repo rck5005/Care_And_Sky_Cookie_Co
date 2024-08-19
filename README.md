@@ -1,5 +1,7 @@
 First File
 
+link to drawsql:
+https://drawsql.app/teams/self-519/diagrams/cookies
 
 install requirements.txt
 

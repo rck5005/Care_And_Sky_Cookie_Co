@@ -5,13 +5,17 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/esm/Button';
-import { logOut } from '../utilities';
+import { logOut, deleteUser } from '../utilities';
 
 function Header({ user, setUser }) {
 
 
-    const handleClick = async() => {
+    const handleLogOutClick = async() => {
       setUser(await logOut())
+    }
+
+    const handleDeleteClick = async() => {
+      setUser(await deleteUser())
     }
     
     return (
@@ -29,8 +33,8 @@ function Header({ user, setUser }) {
                   <NavDropdown.Item as={Link} to="/creations/favorites/">Favorites</NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/creations/all/">All Creations</NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/creations/mine/">My Creations</NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/creations/make/">Make Creation</NavDropdown.Item>
                 </NavDropdown>
+                <Nav.Link as={Link} to="/makecreation/">Make Creation</Nav.Link>
                 <NavDropdown title="Variations" id="basic-nav-dropdown">
                   <NavDropdown.Item as={Link} to="/variations/flavors/">Flavors</NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/variations/cookiecutters/">Cookie Cutters</NavDropdown.Item>
@@ -41,7 +45,8 @@ function Header({ user, setUser }) {
                     Separated link
                   </NavDropdown.Item> */}
                 </NavDropdown> 
-                <Button onClick={handleClick} variant="outline-danger">Log Out</Button>
+                <Button onClick={handleLogOutClick} variant="outline-danger">Log Out</Button>
+                <Button onClick={handleDeleteClick} variant="outline-danger">Delete</Button>
               </Nav>
             </Navbar.Collapse>
             </>

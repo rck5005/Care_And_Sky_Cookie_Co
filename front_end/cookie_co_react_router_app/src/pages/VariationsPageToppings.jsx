@@ -1,8 +1,14 @@
 import React from 'react'
+import { ToppingsList } from '../components/Lists'
 
 function VariationsPageToppings() {
+  
   return (
-    <div>VariationsPageToppings</div>
+    <div>VariationsPageToppings
+
+      <ToppingsList />
+
+    </div>
   )
 }
 

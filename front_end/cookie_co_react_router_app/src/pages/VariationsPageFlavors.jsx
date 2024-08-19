@@ -1,8 +1,14 @@
 import React from 'react'
+import { FlavorsList } from '../components/Lists'
 
 function VariationsPageFlavors() {
+  
   return (
-    <div>VariationsPageFlavors</div>
+    <div>VariationsPageFlavors
+
+      <FlavorsList />
+
+    </div>
   )
 }
 

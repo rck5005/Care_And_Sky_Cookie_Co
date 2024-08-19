@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { DecorationsList } from '../components/Lists'
 
 function VariationsPageDecorations() {
+
   return (
-    <div>VariationsPageDecorations</div>
+    <div>VariationsPageDecorations
+      
+      <DecorationsList />
+      
+    </div>
   )
 }
 

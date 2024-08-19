@@ -56,3 +56,14 @@ export const confirmUser = async() => {
     }
     return null
 }
+
+export const deleteUser = async() => {
+    let response = await api.delete("users/delete/")
+    if(response.status === 204){
+        localStorage.removeItem("token")
+        delete api.defaults.headers.common["Authorization"]
+        return null
+    }
+    alert("Something went wrong during deletion")
+
+}
