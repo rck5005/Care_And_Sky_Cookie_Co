@@ -27,7 +27,33 @@ class AllUsersCreations(TokenReq):
         except Exception as e:
             return Response({'error': str(e)}, status=HTTP_400_BAD_REQUEST)
         
-class RemoveCreation(TokenReq):
+class AddRemoveCreation(TokenReq):
+    
+    def post(self, request, cookie_creation_id):
+        try:
+            ruser = request.user
+            cookie_creation = CookieCreation.objects.get(id=cookie_creation_id)
+            
+            # Try to get the existing UsersCookieCreation instance for the user and cookie creation
+            user_cookie_creation, created = UsersCookieCreation.objects.get_or_create(
+                user=ruser,
+                cookie_creation=cookie_creation
+            )
+            
+            if not created:
+                return Response({'message': 'This cookie creation is already added.'}, status=HTTP_200_OK)
+            
+            # Serialize the newly created entry
+            serializer = UsersCookieCreationSerializer(user_cookie_creation)
+            
+            return Response(serializer.data, status=HTTP_200_OK)
+        
+        except CookieCreation.DoesNotExist:
+            return Response({'error': 'Cookie creation not found.'}, status=HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': str(e)}, status=HTTP_400_BAD_REQUEST)
+        
+
     def delete(self, request, cookie_creation_id):
         try:
             ruser = request.user
@@ -101,7 +127,7 @@ class AdjustFavorites(TokenReq):
         except Exception as e:
             return Response({'error': str(e)}, status=HTTP_400_BAD_REQUEST)
         
-    def delete(self, request, cookie_creation_id):
+    def put(self, request, cookie_creation_id):
         try:
             ruser = request.user
             cookie_creation = CookieCreation.objects.get(id=cookie_creation_id)
@@ -119,7 +145,7 @@ class AdjustFavorites(TokenReq):
                     # If the instance exists, update is_favorite to False
                     user_favorite.is_favorite = False
                     user_favorite.save()
-                    return Response(status=HTTP_204_NO_CONTENT)
+                    return Response(status=HTTP_200_OK)
             else:
                 return Response({'error': 'Cookie creation not found.'}, status=HTTP_404_NOT_FOUND)
 
