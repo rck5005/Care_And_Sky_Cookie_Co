@@ -4,6 +4,7 @@
         "pk": 1,
         "fields": {
             "name": "Holiday Special",
+            "description": "Perfect for Valentine's Day cookies.",
             "flavor": 1,
             "cookie_cutter": 2,
             "topping": 3,
@@ -17,6 +18,7 @@
         "pk": 2,
         "fields": {
             "name": "Chocolate Lover",
+            "description": "Perfect for Valentine's Day cookies.",
             "flavor": 2,
             "cookie_cutter": 1,
             "topping": 2,
@@ -30,6 +32,7 @@
         "pk": 3,
         "fields": {
             "name": "Vanilla Dream",
+            "description": "Perfect for Valentine's Day cookies.",
             "flavor": 3,
             "cookie_cutter": 4,
             "topping": 1,
@@ -43,6 +46,7 @@
         "pk": 4,
         "fields": {
             "name": "Berry Blast",
+            "description": "Perfect for Valentine's Day cookies.",
             "flavor": 4,
             "cookie_cutter": 3,
             "topping": 4,
@@ -56,6 +60,7 @@
         "pk": 5,
         "fields": {
             "name": "Lemon Zest",
+            "description": "Perfect for Valentine's Day cookies.",
             "flavor": 5,
             "cookie_cutter": 5,
             "topping": 5,

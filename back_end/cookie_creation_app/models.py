@@ -8,6 +8,7 @@ from decoration_app.models import Decoration
 class CookieCreation(models.Model):
     name = models.CharField(max_length=255)
     flavor = models.ForeignKey(Flavor, on_delete=models.CASCADE)
+    description = models.TextField(default='Add a description to your new creation!')
     cookie_cutter = models.ForeignKey(CookieCutter, on_delete=models.CASCADE)
     topping = models.ForeignKey(Topping, on_delete=models.CASCADE, null=True, blank=True)
     decoration = models.ForeignKey(Decoration, on_delete=models.CASCADE, null=True, blank=True)
