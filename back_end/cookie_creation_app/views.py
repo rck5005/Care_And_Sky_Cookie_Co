@@ -11,7 +11,7 @@ from rest_framework.status import (
 )
 from user_app.views import TokenReq
 from .models import CookieCreation
-from .serializers import CookieCreationSerializer
+from .serializers import CookieCreationSerializer, CookieCreationPKSerializer
 
 # Create your views here.
 
@@ -39,3 +39,17 @@ class CreationPurchased(TokenReq):
             return Response(serializer.data, status=HTTP_200_OK)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
     
+class CreateNewCreation(TokenReq):
+    def post(self, request):
+        try:
+            serializer = CookieCreationPKSerializer(data=request.data)
+            print("serializer: ", serializer)
+        
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=HTTP_201_CREATED)
+            else:
+                # Return validation errors if serializer is not valid
+                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+        except ValidationError as e:
+            return Response(e.messages, status=HTTP_400_BAD_REQUEST)

@@ -85,6 +85,7 @@ class Info(TokenReq):
                 if auth_user == ruser:
                     ruser.set_password(data.get("new_password"))
                     password_updated = True
+                    # print("password_updated: ", password_updated)
 
             #save password
             ruser.full_clean()

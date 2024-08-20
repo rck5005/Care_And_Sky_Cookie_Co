@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
-import { getInfo, updateNameAndAddress } from '../utilities'
+import { getInfo, updateNameAndAddress, updatePassword } from '../utilities'
 import { useOutletContext } from 'react-router-dom'
 
 function AccountPage() {
@@ -94,7 +94,12 @@ function AccountPage() {
 
     try {
         const response = await updatePassword(oldPassword, newPassword);
-        alert('Password updated:', response);
+        if(response['password_updated']){
+          alert('Password updated')
+        }
+        else {
+          alert('Current password incorrec. Password not updated.')
+        }
         // Optionally clear the password fields
         handleClearPasswordFields();
     } catch (error) {

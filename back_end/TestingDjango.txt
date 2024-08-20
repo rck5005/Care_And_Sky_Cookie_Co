@@ -69,3 +69,18 @@ http://127.0.0.1:8000/api/v1/mailchimp/subscribe/
 post: http://127.0.0.1:8000/api/v1/chatgpt/
 
 {"prompt": "insert your question or concern here"}
+
+
+
+create creation
+
+{
+    "name": "Chocolate Chip Delight",
+    "flavor": 1,
+    "description": "A delicious chocolate chip cookie with extra chocolate chunks.",
+    "cookie_cutter": 2,
+    "topping": 3,
+    "decoration": 4,
+    "prev_purchased": false,
+    "image": "http://example.com/image.jpg"
+}

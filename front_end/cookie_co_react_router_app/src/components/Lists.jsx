@@ -57,12 +57,19 @@ const DecorationsListWithButton = ({ YourCreation, setYourCreation }) => {
                     {alertMessage}
                 </Alert>
             )}
+
         <ListItems
             title="Decorations"
             items={decorations}
             buttonText="Select Decoration For Your Creation"
             onButtonClick={handleButtonClick}
         />
+
+        {alertMessage && (
+                <Alert variant="info" onClose={() => setAlertMessage(null)} dismissible>
+                    {alertMessage}
+                </Alert>
+            )}
         </>
     );
 };
@@ -142,12 +149,19 @@ const ToppingsListWithButton = ({ YourCreation, setYourCreation }) => {
                 {alertMessage}
             </Alert>
         )}
+
         <ListItems
             title="Toppings"
             items={toppings}
             buttonText="Select Topping For Your Creation"
             onButtonClick={handleButtonClick}
         />
+
+        {alertMessage && (
+            <Alert variant="info" onClose={() => setAlertMessage(null)} dismissible>
+                {alertMessage}
+            </Alert>
+        )}
         </>
     );
 };
@@ -180,12 +194,19 @@ const CookieCuttersListWithButton = ({ YourCreation, setYourCreation }) => {
                 {alertMessage}
             </Alert>
         )}
+
         <ListItems
             title="Cookie Cutters"
             items={cookieCutters}
             buttonText="Select Cookie Cutter For Your Creation"
             onButtonClick={handleButtonClick}
         />
+
+        {alertMessage && (
+            <Alert variant="info" onClose={() => setAlertMessage(null)} dismissible>
+                {alertMessage}
+            </Alert>
+        )}
         </>
     );
 };

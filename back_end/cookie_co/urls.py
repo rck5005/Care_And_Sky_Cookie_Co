@@ -32,5 +32,5 @@ urlpatterns = [
 
     path('api/v1/mailchimp/', include('mailchimp_app.urls')),
 
-    path('api/v1/chatgpt/', include('openai_app.urls')),
+    path('api/v1/openai/', include('openai_app.urls')),
 ]

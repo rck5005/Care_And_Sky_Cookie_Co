@@ -3,7 +3,7 @@
     display: flex;
     flex-wrap: wrap; /* Allows items to wrap into multiple rows */
     gap: 20px; /* Adds space between cards */
-    overflow-x: hidden; /* Disables horizontal scrolling */
+    overflow-x: auto; /* Disables horizontal scrolling */
     overflow-y: auto; /* Enables vertical scrolling */
     max-height: 320px; /* Adjust the max height based on your card size and number of rows */
     padding: 10px; /* Adds padding around the container */

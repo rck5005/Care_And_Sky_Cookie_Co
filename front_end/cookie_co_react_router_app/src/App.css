@@ -36,3 +36,8 @@ header {
   gap: 20px; /* Space between cards */
   justify-content: center; /* Center grid horizontally */
 }
+
+.scrollable-container {
+  overflow: auto;
+}
+

@@ -103,3 +103,48 @@ export const updatePassword = async(password, new_password) => {
     }
     alert("Something went wrong while trying to retrieve info")
 }
+
+export const createCreation = async (creationData) => {
+
+    console.log("creationdata:", creationData)
+    try {
+        // Make the POST request to the API
+        const response = await api.post("cookiecreations/create/", {
+            name: creationData.name,
+            flavor: creationData.flavor,
+            description: creationData.description,
+            cookie_cutter: creationData.cookie_cutter,
+            topping: creationData.topping,
+            decoration: creationData.decoration,
+            prev_purchased: creationData.prev_purchased,
+            image: creationData.image
+        });
+
+        // Check if the response status is 201 (Created)
+        if (response.status === 201) {
+            // Return the response data on success
+            return response.data;
+        } else {
+            // Handle unexpected status codes
+            alert("Failed to create creation. Status code: " + response.status);
+        }
+    } catch (error) {
+        // Handle errors
+        console.error("Error creating creation:", error);
+        alert("Something went wrong while trying to create the creation.");
+    }
+};
+
+export const generateAIResponse = async (prompt) => {
+    try {
+        let response = await api.post("openai/", { prompt });
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            throw new Error("Failed to generate response");
+        }
+    } catch (error) {
+        console.error("Error generating AI response:", error);
+        alert("Something went wrong while generating the response.");
+    }
+};
