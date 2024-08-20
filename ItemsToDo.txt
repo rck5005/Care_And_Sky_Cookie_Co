@@ -3,12 +3,14 @@ TO DO BEFORE FINAL
 REQUIREMENTS:
 user remove from favorites
 
+
 lists.jsx line 193.
---currently creations/all/ "add to favorites" button doesn't work
+--currently creations/all/ "add to favorites" button doesn't display correctly, but you can add to favorites
 -----issue is cookiecreation doesn't have "is_favorite", will need to 
 -----compare each creation with the creations in the users "favorites" table and 
 -----rander the button that way.  
 
+BACK END
 
 VALIDATIONS:
 
@@ -25,19 +27,26 @@ only way to make public is if the cookie creation was previously purchased
 STRETCH GOAL: keep track of how many times the cookie was purchased
 
 
-Front end: when user changes a creation from Favorite to Not Favorite, will need to identify if we should
+FRONT END 
+
+when user changes a creation from Favorite to Not Favorite, will need to identify if we should
 remove the creation from users_cookie_creation views.py as well.
 --perhaps ask the user if they'd also like to remove it from their creations?  and if so, then remove it
 --and if it also has a "prev_purchased" of negative, then delete it from cookie creations also
 
-save a users creation so if they refresh the page we don't lose the state
+addremoveCreation.  going to be difficult. add another button to items only in "MyCookieCreations"
+--option to either remove from list (if previously sold) or 
+--permanently delete (if it's user's creation)
 
 Confirmation for Delete Account before deleting
 
 DOWN THE ROAD: Handle all possible HTTP responses from the back end to front end.. right now just handling what is supposed to happen.
 
+notify user when removing a variation from their potential creation, right now it just disappears
 
-
+separate update username, address, and password:
+--currently, when updating username, address or password it will try to update all three.
+----AccountPage.jsx, utilities.jsx, user_app.views.py, user_app.urls
 
 possibly to mailchimp views for subscribe to introduce serializerclass Subscribe(TokenReq):
     def post(self, request):
@@ -67,10 +76,13 @@ possibly to mailchimp views for subscribe to introduce serializerclass Subscribe
 
 
 
+
 ITEMS COMPLETED:
 user delete a user_cookie_creation
 --previously purchased
 --not previously purchased
+
+save a users creation so if they refresh the page we don't lose the state
 
 
 just created a serializer for user while i was creating urls and views for user_cookie_creation.

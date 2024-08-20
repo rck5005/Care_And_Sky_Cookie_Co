@@ -6,7 +6,7 @@ function CreationsPageAll() {
 
 
   return (
-    <div>CreationsPageAll
+    <div>
       
       <CreationsList />
       

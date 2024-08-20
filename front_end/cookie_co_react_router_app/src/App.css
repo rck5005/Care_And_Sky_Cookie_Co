@@ -1,4 +1,4 @@
-/* App.css */
+App.css
 
 .app-container {
   margin: 0;
@@ -23,7 +23,6 @@ header {
   justify-content: space-between; /* Optional: Distribute space between elements */
   padding: 10px; /* Optional: Padding around header content */
 }
-
 
 .container {
   padding: 40px;

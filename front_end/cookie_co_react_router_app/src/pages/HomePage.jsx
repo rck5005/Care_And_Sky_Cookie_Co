@@ -6,7 +6,8 @@ function HomePage() {
 
   return (
     
-    <div>HomePage {user}</div>
+    <div>HomePage {user}
+    </div>
   )
 }
 

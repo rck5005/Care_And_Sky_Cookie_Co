@@ -1,12 +1,12 @@
 import React from 'react'
 import ItemCard from './ItemCard'
-import '../App.css'
+import "./ListItems.css";
 
 const ListItems = ({ title, items, buttonText, onButtonClick, showFavoriteButton }) => {
     return (
         <div>
             <h2>{title}</h2>
-            <div>
+            <div className="item-card-container">
                 {items.length === 0 ? (
                     <h3>No {title} Available Yet</h3>
                 ) : (

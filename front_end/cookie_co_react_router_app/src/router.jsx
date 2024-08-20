@@ -13,6 +13,7 @@ import VariationsPageToppings from "./pages/VariationsPageToppings.jsx";
 import VariationsPageCookieCutters from "./pages/VariationsPageCookieCutters.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 import LogInPage from "./pages/LogInPage.jsx";
+import AccountPage from "./pages/AccountPage.jsx";
 import { confirmUser } from "./utilities.jsx";
 
 const router = createBrowserRouter([
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: "signup/",
         element: <SignUpPage />,
+      },
+      {
+        path: "account/",
+        element: <AccountPage />,
       },
     //   {
     //     path: "variations/:name",

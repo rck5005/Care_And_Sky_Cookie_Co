@@ -3,7 +3,7 @@ import { MyFavoritesList } from '../components/Lists'
 
 function CreationsPageFavorites() {
   return (
-    <div>CreationsPageFavorites
+    <div>
 
       <MyFavoritesList />
     </div>

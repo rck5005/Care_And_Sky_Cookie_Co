@@ -20,6 +20,7 @@ class Sign_up(APIView):
         data = request.data.copy()
         data['username'] = request.data.get("username", request.data.get("email"))
         new_user = User(**data)
+        new_user.display_name = request.data.get("display_name", request.data.get("email"))
         try:
             new_user.full_clean()
             new_user.set_password(data.get("password"))
@@ -70,6 +71,8 @@ class Info(TokenReq):
     def put(self, request):
         try:
             #check for display_name and address
+            password_updated = False
+
             data = request.data.copy()
             ruser = request.user
             ruser.display_name = data.get("display_name", ruser.display_name)
@@ -81,12 +84,15 @@ class Info(TokenReq):
                 auth_user = authenticate(username = ruser.username, password = cur_pass)
                 if auth_user == ruser:
                     ruser.set_password(data.get("new_password"))
+                    password_updated = True
 
-            
             #save password
             ruser.full_clean()
             ruser.save()
-            return Response({"display_name": ruser.display_name, "address":ruser.address})
+
+
+
+            return Response({"display_name": ruser.display_name, "address":ruser.address, "password_updated":password_updated})
         except ValidationError as e:
             print(e)
             return Response(e.messages, status=HTTP_400_BAD_REQUEST)

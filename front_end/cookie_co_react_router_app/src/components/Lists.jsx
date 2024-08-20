@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import useFetchData from './useFetchData'
 import useFavoriteData from './UseFavoriteData';
 import ListItems from './ListItems'
+import Alert from 'react-bootstrap/Alert';
 
 
 //WITHOUT BUTTONS
@@ -29,6 +30,7 @@ const ToppingsList = () => {
 //WITH BUTTONS
 
 const DecorationsListWithButton = ({ YourCreation, setYourCreation }) => {
+    const [alertMessage, setAlertMessage] = useState(null);
     const decorations = useFetchData('decorations/');
 
     const handleButtonClick = (id, name) => {
@@ -38,27 +40,35 @@ const DecorationsListWithButton = ({ YourCreation, setYourCreation }) => {
             );
             if (confirmReplace) {
                 setYourCreation((prev) => ({ ...prev, decoration: id, decorationName: name }));
-                alert(`Decoration "${name}" selected, replacing the previous decoration.`);
+                setAlertMessage(`Decoration "${name}" selected, replacing the previous decoration.`);
             } else {
-                alert('Replacement canceled.');
+                setAlertMessage('Replacement canceled.');
             }
         } else {
             setYourCreation((prev) => ({ ...prev, decoration: id, decorationName: name }));
-            alert(`Decoration "${name}" selected.`);
+            setAlertMessage(`Decoration "${name}" selected.`);
         }
     };
 
     return (
+        <>
+            {alertMessage && (
+                <Alert variant="info" onClose={() => setAlertMessage(null)} dismissible>
+                    {alertMessage}
+                </Alert>
+            )}
         <ListItems
             title="Decorations"
             items={decorations}
-            buttonText="Select Decoration"
+            buttonText="Select Decoration For Your Creation"
             onButtonClick={handleButtonClick}
         />
+        </>
     );
 };
 
 const FlavorsListWithButton = ({ YourCreation, setYourCreation }) => {
+    const [alertMessage, setAlertMessage] = useState(null);
     const flavors = useFetchData('flavors/');
 
     const handleButtonClick = (id, name) => {
@@ -68,27 +78,44 @@ const FlavorsListWithButton = ({ YourCreation, setYourCreation }) => {
             );
             if (confirmReplace) {
                 setYourCreation((prev) => ({ ...prev, flavor: id, flavorName: name }));
-                alert(`Flavor "${name}" selected, replacing the previous flavor.`);
+                setAlertMessage(`Flavor "${name}" selected, replacing the previous flavor.`);
             } else {
-                alert('Replacement canceled.');
+                setAlertMessage('Replacement canceled.');
             }
         } else {
             setYourCreation((prev) => ({ ...prev, flavor: id, flavorName: name }));
-            alert(`Flavor "${name}" selected.`);
+            setAlertMessage(`Flavor "${name}" selected.`);
         }
     };
 
     return (
+        <>
+        {alertMessage && (
+            <Alert variant="info" onClose={() => setAlertMessage(null)} dismissible>
+                {alertMessage}
+            </Alert>
+        )}
+
         <ListItems
             title="Flavors"
             items={flavors}
-            buttonText="Select Flavor"
+            buttonText="Select Flavor For Your Creation"
             onButtonClick={handleButtonClick}
         />
+
+        {alertMessage && (
+            <Alert variant="info" onClose={() => setAlertMessage(null)} dismissible>
+                {alertMessage}
+            </Alert>
+        )}        
+
+        
+        </>
     );
 };
 
 const ToppingsListWithButton = ({ YourCreation, setYourCreation }) => {
+    const [alertMessage, setAlertMessage] = useState(null);
     const toppings = useFetchData('toppings/');
 
     const handleButtonClick = (id, name) => {
@@ -98,27 +125,35 @@ const ToppingsListWithButton = ({ YourCreation, setYourCreation }) => {
             );
             if (confirmReplace) {
                 setYourCreation((prev) => ({ ...prev, topping: id, toppingName: name }));
-                alert(`Topping "${name}" selected, replacing the previous topping.`);
+                setAlertMessage(`Topping "${name}" selected, replacing the previous topping.`);
             } else {
-                alert('Replacement canceled.');
+                setAlertMessage('Replacement canceled.');
             }
         } else {
             setYourCreation((prev) => ({ ...prev, topping: id, toppingName: name }));
-            alert(`Topping "${name}" selected.`);
+            setAlertMessage(`Topping "${name}" selected.`);
         }
     };
 
     return (
+        <>
+        {alertMessage && (
+            <Alert variant="info" onClose={() => setAlertMessage(null)} dismissible>
+                {alertMessage}
+            </Alert>
+        )}
         <ListItems
             title="Toppings"
             items={toppings}
-            buttonText="Select Topping"
+            buttonText="Select Topping For Your Creation"
             onButtonClick={handleButtonClick}
         />
+        </>
     );
 };
 
 const CookieCuttersListWithButton = ({ YourCreation, setYourCreation }) => {
+    const [alertMessage, setAlertMessage] = useState(null);
     const cookieCutters = useFetchData('cookiecutters/');
 
     const handleButtonClick = (id, name) => {
@@ -128,23 +163,30 @@ const CookieCuttersListWithButton = ({ YourCreation, setYourCreation }) => {
             );
             if (confirmReplace) {
                 setYourCreation((prev) => ({ ...prev, cookieCutter: id, cookieCutterName: name }));
-                alert(`Cookie Cutter "${name}" selected, replacing the previous cookie cutter.`);
+                setAlertMessage(`Cookie Cutter "${name}" selected, replacing the previous cookie cutter.`);
             } else {
-                alert('Replacement canceled.');
+                setAlertMessage('Replacement canceled.');
             }
         } else {
             setYourCreation((prev) => ({ ...prev, cookieCutter: id, cookieCutterName: name }));
-            alert(`Cookie Cutter "${name}" selected.`);
+            setAlertMessage(`Cookie Cutter "${name}" selected.`);
         }
     };
 
     return (
+        <>
+        {alertMessage && (
+            <Alert variant="info" onClose={() => setAlertMessage(null)} dismissible>
+                {alertMessage}
+            </Alert>
+        )}
         <ListItems
             title="Cookie Cutters"
             items={cookieCutters}
-            buttonText="Select Cookie Cutter"
+            buttonText="Select Cookie Cutter For Your Creation"
             onButtonClick={handleButtonClick}
         />
+        </>
     );
 };
 

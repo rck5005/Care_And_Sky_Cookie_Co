@@ -38,3 +38,4 @@ class CreationPurchased(TokenReq):
             serializer.save()
             return Response(serializer.data, status=HTTP_200_OK)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+    

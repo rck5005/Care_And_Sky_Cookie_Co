@@ -5,12 +5,13 @@ import { useOutletContext } from 'react-router-dom';
 function SignUpPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const {setUser} = useOutletContext()
 
 
   const handleSubmit = async(e) => {
     e.preventDefault()
-    setUser(await signUp(email, password))
+    setUser(await signUp(email, password, displayName))
   }
 
   return (
@@ -28,6 +29,11 @@ function SignUpPage() {
             type="password" 
             placeholder="enter password"
             required
+        />
+        <input value={displayName} 
+            onChange={(e)=>setDisplayName(e.target.value)} 
+            type="display_name" 
+            placeholder="optional: enter your name"
         />
         <input type="submit" value="sign up"/>
 

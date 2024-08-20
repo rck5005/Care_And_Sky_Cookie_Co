@@ -1,12 +1,37 @@
-import React from 'react'
-import { FlavorsList } from '../components/Lists'
+import React, { useState, useEffect } from 'react'
+import { FlavorsListWithButton } from '../components/Lists'
 
 function VariationsPageFlavors() {
+
+    // Load the initial state from localStorage if available
+    const loadSavedCreation = () => {
+      const savedCreation = localStorage.getItem('YourCreation');
+      return savedCreation ? JSON.parse(savedCreation) : {
+          flavor: null,
+          flavorName: '',
+          topping: null,
+          toppingName: '',
+          cookieCutter: null,
+          cookieCutterName: '',
+          decoration: null,
+          decorationName: ''
+      };
+  };
+
+  const [YourCreation, setYourCreation] = useState(loadSavedCreation());
+
+  // Save the current state to localStorage whenever it changes
+  useEffect(() => {
+      localStorage.setItem('YourCreation', JSON.stringify(YourCreation));
+  }, [YourCreation]);
   
   return (
-    <div>VariationsPageFlavors
+    <div>
 
-      <FlavorsList />
+<FlavorsListWithButton
+          YourCreation={YourCreation}
+          setYourCreation={setYourCreation}
+      />
 
     </div>
   )

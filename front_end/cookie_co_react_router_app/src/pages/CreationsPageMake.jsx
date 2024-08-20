@@ -36,6 +36,8 @@ function CreationsPageMake() {
       <YourCreationDisplay YourCreation={YourCreation} 
           setYourCreation={setYourCreation}/>
 
+        
+
       <FlavorsListWithButton
           YourCreation={YourCreation}
           setYourCreation={setYourCreation}

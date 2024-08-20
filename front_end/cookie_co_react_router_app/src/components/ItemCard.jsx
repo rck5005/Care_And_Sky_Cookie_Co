@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 import { useOutletContext } from "react-router-dom";
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
+import "./ItemCard.css";
 
 function ItemCard({ id, name, description, image, buttonText, onButtonClick, is_favorite, showFavoriteButton }) {
 
@@ -24,7 +25,7 @@ function ItemCard({ id, name, description, image, buttonText, onButtonClick, is_
               {is_favorite ? 'Remove from Favorites' : 'Add to Favorites'}
           </button>
       )}
-      
+
     </div>
   );
 }
