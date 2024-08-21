@@ -27,6 +27,11 @@ function App() {
   useEffect(()=>{
     let nullUserUrls = ['/login/', '/signup/']
     let nullAllowed = nullUserUrls.includes(location.pathname)
+    // let aboutPage = location.pathname === '/about/';
+
+    // if (location.pathname === aboutPage){
+    //   navigate(aboutPage)
+    // }
 
     if (user && nullAllowed){
       navigate('/')

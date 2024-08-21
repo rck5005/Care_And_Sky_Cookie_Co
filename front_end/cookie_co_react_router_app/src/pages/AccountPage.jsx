@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import swal from 'sweetalert';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import { getInfo, updateNameAndAddress, updatePassword } from '../utilities'
 import { useOutletContext } from 'react-router-dom'
+import { deleteUser } from '../utilities';
 
 function AccountPage() {
     const { user, setUser } = useOutletContext()
@@ -17,6 +19,7 @@ function AccountPage() {
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
+
 
     useEffect(() => {
         const fetchUserInfo = async () => {
@@ -58,7 +61,6 @@ function AccountPage() {
     setConfirmNewPassword(e.target.value);
   };
 
-
   const handleUpdateDisplayName = async () => {
     try {
         // console.log("handleupdatedisplayname:", newUserName)
@@ -66,9 +68,10 @@ function AccountPage() {
         alert('Username updated:', updatedData);
         // Optionally update the UI to reflect the changes
         setUserInfo(updatedData);
+        location.reload();
 
         // Update the `user` in the context to trigger a re-render on other components
-        setUser(updatedData.user);
+        // setUser(updatedData.user);
 
     } catch (error) {
         console.error('Error updating username:', error);
@@ -81,6 +84,7 @@ function AccountPage() {
         alert('Address updated:', updatedData);
         // Optionally update the UI to reflect the changes
         setUserInfo(updatedData);
+        location.reload();
     } catch (error) {
         console.error('Error updating address:', error);
     }
@@ -111,7 +115,64 @@ const handleClearPasswordFields = () => {
     setOldPassword('');
     setNewPassword('');
     setConfirmNewPassword('');
+
+
 };
+
+  const handleDeleteClick = () => {
+    swal({
+      title: "Are you sure?",
+      text: "This action cannot be undone.",
+      icon: "warning",
+      buttons: {
+        cancel: "Cancel",
+        confirm: {
+          text: "Delete",
+          value: true,
+          visible:true,
+          className:"btn-danger",
+        }
+      },
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal({
+          title: "Final Confirmation",
+          text: "LAST CHANCE! Are you absolutely sure?",
+          icon: "warning",
+          buttons: {
+            cancel: "Cancel",
+            confirm:{
+              text: "Permanently Delete Account",
+              value: true,
+              visible: true,
+              className:"btn-danger",
+            }
+          },
+          dangerMode: true,
+        }).then((finalConfirmation) => {
+          if (finalConfirmation) {
+            const deleteProfile = async () => {
+              try {
+                await deleteUser();
+                setUser(null); // Clear the user context
+                swal({
+                  title: "ACCOUNT DELETED",
+                  text: "Your Account Has Successfully Been Deleted!",
+                  icon: "success",
+                  })
+                }
+                catch (error) {
+                console.error('Error deleting account:', error);
+                alert('There was an error deleting your account. Please try again.');
+              }
+            };
+            deleteProfile();
+          }
+        });
+      }
+    });
+  };
 
   return (
     <Container>
@@ -161,7 +222,6 @@ const handleClearPasswordFields = () => {
         </Col>
       </Row>
 
-
       <div className="mb-4">
         <h4>Please use the fields below to update your password. </h4>
       </div>
@@ -208,7 +268,16 @@ const handleClearPasswordFields = () => {
           </Form.Group>
         </Col>
       </Row>
+
+      <div className="mb-3 p-3 bg-light border rounded">
+        <strong>Warning:</strong> Deleting your account is permanent and cannot be undone. 
+        You will be logged out and redirected to the login page upon deletion.
+      </div>
+      <Button onClick={handleDeleteClick} variant="outline-danger">Permanently Delete Account</Button>
+
     </Container>
+
+    
   );
 }
 

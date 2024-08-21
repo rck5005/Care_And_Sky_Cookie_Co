@@ -3,6 +3,10 @@ TO DO BEFORE FINAL
 REQUIREMENTS:
 user remove from favorites
 
+thoughts:
+fix favorites logic
+
+
 
 lists.jsx line 193.
 --currently creations/all/ "add to favorites" button doesn't display correctly, but you can add to favorites
@@ -20,33 +24,43 @@ VALIDATIONS:
 ----user_cookie_creation(adjustfavorites, delete, if it's already deleted)
 
 
-user can create user_cookie_creation
-user_cookie_creation saves to cookie creation, but is automatically private
-only way to make public is if the cookie creation was previously purchased
+
+user created cookie_creation needs to automatically save to cookie_creation, 
+--it is automatically private (not previously purchased)
+--only way to make public is to change previously purchased
 
 STRETCH GOAL: keep track of how many times the cookie was purchased
 
 
 FRONT END 
 
-when user changes a creation from Favorite to Not Favorite, will need to identify if we should
+when user changes a creation from Favorite to Not Favorite, will need to ask user if we should
 remove the creation from users_cookie_creation views.py as well.
 --perhaps ask the user if they'd also like to remove it from their creations?  and if so, then remove it
 --and if it also has a "prev_purchased" of negative, then delete it from cookie creations also
 
 addremoveCreation.  going to be difficult. add another button to items only in "MyCookieCreations"
---option to either remove from list (if previously sold) or 
+--option to either remove from list (if previously purchased) or 
 --permanently delete (if it's user's creation)
 
 Confirmation for Delete Account before deleting
+--have user enter their current password to successfully delete their account
 
 DOWN THE ROAD: Handle all possible HTTP responses from the back end to front end.. right now just handling what is supposed to happen.
 
 notify user when removing a variation from their potential creation, right now it just disappears
 
+allow visibility of about page at all times whether logged in or logged out
+
+create an alert if someone tries to create an account that is already taken
+
+
+FRONT END/BACK END
 separate update username, address, and password:
 --currently, when updating username, address or password it will try to update all three.
 ----AccountPage.jsx, utilities.jsx, user_app.views.py, user_app.urls
+
+
 
 possibly to mailchimp views for subscribe to introduce serializerclass Subscribe(TokenReq):
     def post(self, request):
@@ -75,15 +89,34 @@ possibly to mailchimp views for subscribe to introduce serializerclass Subscribe
 
 
 
-
-
 ITEMS COMPLETED:
+
+BACK END
+
+
+just created a serializer for user while i was creating urls and views for user_cookie_creation.
+might have to go back and change the user views since I didn't use a serializer for it. 
+
+FRONT END
+
 user delete a user_cookie_creation
 --previously purchased
 --not previously purchased
 
 save a users creation so if they refresh the page we don't lose the state
 
+fix logout logic for update username
+---just triggered a page reload
 
-just created a serializer for user while i was creating urls and views for user_cookie_creation.
-might have to go back and change the user views since I didn't use a serializer for it. 
+incorporated to confirm user they want to delete their profile:
+
+login page and sign-up page
+--have signup button more noticable
+
+
+
+BACK END/FRONT END
+
+
+
+

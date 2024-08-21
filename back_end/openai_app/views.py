@@ -23,7 +23,7 @@ class ChatGPTQuery(TokenReq):
         openai_service = OpenAIService()
         response_text = openai_service.generate_response(prompt)
 
-        print("response_text: ", response_text)
+        # print("response_text: ", response_text)
         
         if response_text:
             return Response({"response": response_text}, status=200)

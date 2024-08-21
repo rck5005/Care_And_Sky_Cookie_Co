@@ -12,10 +12,6 @@ function Header({ user, setUser }) {
     const handleLogOutClick = async() => {
       setUser(await logOut())
     }
-
-    const handleDeleteClick = async() => {
-      setUser(await deleteUser())
-    }
     
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
@@ -45,7 +41,6 @@ function Header({ user, setUser }) {
                   </NavDropdown.Item> */}
                 </NavDropdown> 
                 <Button onClick={handleLogOutClick} variant="outline-danger">Log Out</Button>
-                <Button onClick={handleDeleteClick} variant="outline-danger">Delete</Button>
               </Nav>
               <Button as={Link} to="/account/">Account Page</Button>
               <span>&nbsp;&nbsp;&nbsp;&nbsp;Logged in as: {user}</span>
