@@ -34,7 +34,7 @@ function App() {
     // }
 
     if (user && nullAllowed){
-      navigate('/')
+      navigate('/about/')
     }
     else if (!user && !nullAllowed){
       navigate('/login/')

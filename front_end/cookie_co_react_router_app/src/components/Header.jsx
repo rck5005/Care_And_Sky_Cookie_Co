@@ -22,7 +22,7 @@ function Header({ user, setUser }) {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                {/* <Nav.Link as={Link} to="/">Home</Nav.Link> */}
                 <Nav.Link as={Link} to="/about">About</Nav.Link>
                 <NavDropdown title="Creations" id="basic-nav-dropdown">
                   <NavDropdown.Item as={Link} to="/creations/favorites/">Favorites</NavDropdown.Item>

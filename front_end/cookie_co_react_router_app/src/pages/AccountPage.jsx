@@ -310,7 +310,7 @@ function AccountPage() {
         </Col>
       </Row>
 
-      <h4>Manage your MailChimp Account</h4>
+      <h4>Manage your MailChimp Account and your Subscription to our Newsletter</h4>
 
       <Row className ="mb-3">
           <Col md={6}>
@@ -324,7 +324,7 @@ function AccountPage() {
 
           <Col md={6}>
               <h6 className ="text-muted">
-                  This will unsubscribe you from receiving newsletters; however, you will still receive emails regarding active orders.
+                  Unsubscribe here though you will still receive emails regarding active orders.
               </h6>
               <Button variant="danger" onClick={handleUnsubscribeMailChimpAccount}>
                   Click Here to Unsubscribe and Stop Receiving Newsletters
