@@ -1,3 +1,26 @@
+body {
+  background-image: url('./assets/Backgroundimage.png');
+  background-size: cover; /* This ensures the image covers the entire viewport */
+  background-position: center center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-attachment: fixed; /* Keeps the background fixed during scroll */
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  color: #333; /* Ensure text is readable against the background */
+}
+
+html, body {
+  height: 100%; /* Ensure the body takes up the full height */
+}
+
+h1 {
+  text-align: center;         /* Centers the text horizontally */
+  font-weight: bold;          /* Makes the text bold */
+  color: #ff4500;             /* A bright color that stands out */
+}
+
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

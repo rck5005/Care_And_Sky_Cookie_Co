@@ -7,7 +7,7 @@ import "./ItemCard.css";
 function ItemCard({ id, name, description, image, buttonText, onButtonClick, is_favorite, showFavoriteButton }) {
 
   return (
-    <div className="item-card">
+    <div className ="item-card">
       <h3>{name}</h3>
       <img src={image} alt={name} />
       <p>{description}</p>

@@ -16,6 +16,7 @@ function SignUpPage() {
   const [purchaseEmailsOptIn, setPurchaseEmailsOptIn] = useState(true);
 
   const {setUser} = useOutletContext()
+  const {setIsSubscribed} = useOutletContext()
 
 
   const handleSubmit = async(e) => {
@@ -33,6 +34,7 @@ function SignUpPage() {
     if (!newsletterOptIn) {
       console.log("inside trying to unsubscribe")
       await unsubscribeFromMailChimp(email);
+      setIsSubscribed(false)
     }
 
     if (password != confirmPassword) {

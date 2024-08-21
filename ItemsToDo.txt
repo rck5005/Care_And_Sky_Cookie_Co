@@ -69,8 +69,7 @@ need to clear local storage when a user logs out so if another user logs in they
 ----somehow match it to the user name or something?
 
 
-use hooks for mailchimp to track if someone is subscribed or not
---SignupPage, AccountPage (create the button that switches depending on what it is)
+
 
 currently ListItems.css has a max-height of 3200px for each itme-card-container, when the list grows i'll need to update this
 
@@ -110,6 +109,13 @@ especially on AccountPage when "subscribing", right now I just have the api dele
 --and recreate
 
 
+header:
+--add a search so that people can search for an item
+
+titles for ListItems
+--make it the orange color like the other
+
+
 
 
 ITEMS COMPLETED:
@@ -135,6 +141,9 @@ incorporated to confirm user they want to delete their profile:
 
 login page and sign-up page
 --have signup button more noticable
+
+use hooks for mailchimp to track if someone is subscribed or not
+--SignupPage, AccountPage (create the button that switches depending on what it is)
 
 
 

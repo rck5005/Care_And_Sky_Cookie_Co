@@ -5,7 +5,8 @@ import { getInfo, updateNameAndAddress, updatePassword, deleteUser, deleteMailCh
 import { useOutletContext } from 'react-router-dom'
 
 function AccountPage() {
-    const { user, setUser } = useOutletContext()
+    const { user, setUser, isSubscribed, setIsSubscribed } = useOutletContext()
+
 
     const [userInfo, setUserInfo] = useState({
         user: '',
@@ -118,15 +119,20 @@ function AccountPage() {
 
   };
 
+  useEffect(() => {
+    console.log("isSubscribed changed: ", isSubscribed);
+}, [isSubscribed]);
+
   const handleSubscribeMailChimpAccount = async () => {
     try {
 
-        //this is here for lack of tracking if i have an account or not
         const response0 = await deleteMailChimpAccount(userInfo.email)
 
         const response = await subscribeToMailChimp(userInfo.email, newUserName, userInfo.user);
         if (response) {
             swal('Subscribed successfully!', 'You are now subscribed to the newsletter.', 'success');
+            console.log("subscribed before: ", isSubscribed)
+            setIsSubscribed(true)
         }
     } catch (error) {
         console.error('Subscription failed:', error);
@@ -139,6 +145,8 @@ function AccountPage() {
           const response = await unsubscribeFromMailChimp(userInfo.email);
           if (response) {
               swal('Unsubscribed successfully!', 'You have been unsubscribed from the newsletter.', 'success');
+              console.log("unsubscribed before: ", isSubscribed)
+              setIsSubscribed(false)
           }
       } catch (error) {
           console.error('Unsubscription failed:', error);
@@ -197,6 +205,7 @@ function AccountPage() {
               try {
                 await deleteUser();
                 setUser(null); // Clear the user context
+                await handleDeleteMailChimpAccount(user.email)
                 swal({
                   title: "ACCOUNT DELETED",
                   text: "Your Account Has Successfully Been Deleted!",
@@ -310,27 +319,31 @@ function AccountPage() {
         </Col>
       </Row>
 
-      <h4>Manage your MailChimp Account and your Subscription to our Newsletter</h4>
 
-      <Row className ="mb-3">
-          <Col md={6}>
-              <h6 className ="text-muted">
-                  This will sign you up for our newsletter sent via e-mail through MailChimp.
-              </h6>
-              <Button variant="success" onClick={handleSubscribeMailChimpAccount}>
-                  Click Here to Subscribe and Receive Newsletters
-              </Button>
-          </Col>  
-
-          <Col md={6}>
-              <h6 className ="text-muted">
-                  Unsubscribe here though you will still receive emails regarding active orders.
-              </h6>
-              <Button variant="danger" onClick={handleUnsubscribeMailChimpAccount}>
-                  Click Here to Unsubscribe and Stop Receiving Newsletters
-              </Button>
-          </Col>
-      </Row>
+      <Container>
+          <h4>Manage your MailChimp Account and your Subscription to our Newsletter</h4>
+          <Row className ="mb-3">
+              {!isSubscribed ? (
+                  <Col md={12}>
+                      <h6 className ="text-muted">
+                          This will sign you up for our newsletter sent via e-mail through MailChimp.
+                      </h6>
+                      <Button variant="success" onClick={handleSubscribeMailChimpAccount}>
+                          Click Here to Subscribe and Receive Newsletters
+                      </Button>
+                  </Col>
+              ) : (
+                  <Col md={12}>
+                      <h6 className ="text-muted">
+                          Unsubscribe here though you will still receive emails regarding active orders.
+                      </h6>
+                      <Button variant="danger" onClick={handleUnsubscribeMailChimpAccount}>
+                          Click Here to Unsubscribe and Stop Receiving Newsletters
+                      </Button>
+                  </Col>
+              )}
+          </Row>
+      </Container>
 
       <div className ="mb-3 p-3 bg-light border rounded">
         <strong>Warning:</strong> Deleting your account is permanent and cannot be undone. 

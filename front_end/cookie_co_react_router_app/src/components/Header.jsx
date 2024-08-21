@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/esm/Button';
+import Form from 'react-bootstrap/esm/Form'
 import { logOut, deleteUser } from '../utilities';
 
 function Header({ user, setUser }) {
@@ -14,15 +15,15 @@ function Header({ user, setUser }) {
     }
     
     return (
-        <Navbar expand="lg" className="bg-body-tertiary">
+        <Navbar expand="lg" className ="bg-body-tertiary">
           <Container>
             {user ? (
             <>
             <Navbar.Brand as={Link} to="/"></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                {/* <Nav.Link as={Link} to="/">Home</Nav.Link> */}
+              <Nav className ="me-auto">
+                <Nav.Link as={Link} to="/">Home</Nav.Link>
                 <Nav.Link as={Link} to="/about">About</Nav.Link>
                 <NavDropdown title="Creations" id="basic-nav-dropdown">
                   <NavDropdown.Item as={Link} to="/creations/favorites/">Favorites</NavDropdown.Item>
@@ -35,11 +36,17 @@ function Header({ user, setUser }) {
                   <NavDropdown.Item as={Link} to="/variations/cookiecutters/">Cookie Cutters</NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/variations/toppings/">Toppings</NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/variations/decorations/">Decorations</NavDropdown.Item>
-                  {/* <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item> */}
                 </NavDropdown> 
+                      {/* Add Search Bar Here */}
+                {/* <Form className ="d-flex">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className ="me-2"
+                    aria-label="Search"
+                  />
+                  <Button variant="outline-success">Search</Button>
+                </Form> */}
                 <Button onClick={handleLogOutClick} variant="outline-danger">Log Out</Button>
               </Nav>
               <Button as={Link} to="/account/">Account Page</Button>

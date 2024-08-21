@@ -8,7 +8,7 @@ const ListItems = ({ title, items, buttonText, onButtonClick, showFavoriteButton
             <h2>{title}</h2>
             <div className="item-card-container">
                 {items.length === 0 ? (
-                    <h3>No {title} Available Yet</h3>
+                    <h3>Think about {title} and they will appear! Or there are none available yet</h3>
                 ) : (
                     items.map((item) => (
                         <ItemCard

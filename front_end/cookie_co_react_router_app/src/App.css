@@ -26,12 +26,13 @@ header {
 
 .container {
   padding: 40px;
-  background-color: #f5f5f5;
+  background-color: rgba(245, 245, 245, 0.8); /* Slight transparency */
   min-height: 10vh;
 }
 
 .card-grid {
   display: grid;
+  background-color: rgba(245, 245, 245, 0.8); /* Slight transparency */
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Adjust width as needed */
   gap: 20px; /* Space between cards */
   justify-content: center; /* Center grid horizontally */

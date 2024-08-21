@@ -10,6 +10,7 @@ import { api } from './utilities'
 function App() {
   const loaderData = useLoaderData()
   const [user, setUser] = useState(loaderData)
+  const [isSubscribed, setIsSubscribed] = useState(false)
   const navigate = useNavigate()
 
   // const testConnection = async() =>{
@@ -34,7 +35,7 @@ function App() {
     // }
 
     if (user && nullAllowed){
-      navigate('/about/')
+      navigate('/')
     }
     else if (!user && !nullAllowed){
       navigate('/login/')
@@ -48,7 +49,7 @@ function App() {
         <h1>Care and Sky Cookie Co</h1>
         <Header user = {user} setUser={setUser}/>
         <Container>
-          <Outlet context={{user, setUser}}/>
+          <Outlet context={{user, setUser, isSubscribed, setIsSubscribed}}/>
         </Container>
     </>
   )

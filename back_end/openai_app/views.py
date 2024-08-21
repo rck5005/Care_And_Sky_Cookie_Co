@@ -29,3 +29,4 @@ class ChatGPTQuery(TokenReq):
             return Response({"response": response_text}, status=200)
         else:
             return Response({"error": "Failed to get response from OpenAI"}, status=500)
+
