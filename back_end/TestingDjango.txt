@@ -2,7 +2,7 @@ Test User Signup:
 
 post: http://127.0.0.1:8000/api/v1/users/signup/
 
-{"email": "fr@fr.com", "password":"fr"}
+{"email":"fr12@fr.com", "first_name":"cody", "last_name":"ksmith", "password":"fr", "display_name":"me", "address":"home"}
 
 {
   "user": "fr@fr.com",

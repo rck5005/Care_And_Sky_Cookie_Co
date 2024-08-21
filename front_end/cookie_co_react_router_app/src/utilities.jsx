@@ -5,14 +5,24 @@ export const api = axios.create({
 })
 
 export const signUp = async(email, first_name, last_name, password, display_name, address) => {
-    let response = await api.post("users/signup/", {
-        'email':email,
-        'first_name':first_name,
-        'last_name':last_name,
-        'password':password,
-        'display_name':display_name,
-        'address':address
-    })
+
+    // Build the request body dynamically
+    const requestBody = {
+        email,
+        first_name,
+        last_name,
+        password
+    };
+
+    // Conditionally add properties to the request body
+    if (display_name) {
+        requestBody.display_name = display_name;
+    }
+    if (address) {
+        requestBody.address = address;
+    }
+
+    let response = await api.post("users/signup/", requestBody)
 
     if (response.status === 201){
         let {user, token} = response.data
@@ -204,4 +214,77 @@ export const zeroizeYourCreationValue = () => {
         "decoration": null,
         "decorationName": ""
     }));
+};
+
+
+export const subscribeToMailChimp = async (email, first_name, last_name) => {
+    try {
+        // Prepare the payload for the API call
+        const payload = {
+            email,
+            first_name,
+            last_name
+        };
+
+        // Make the POST request to the MailChimp API endpoint
+        const response = await api.post('mailchimp/subscribe/', payload);
+
+        // Check for a successful response
+        if (response.status === 201) {
+            // console.log('Subscription successful');
+            return response.data; // Return the response data if needed
+        } else {
+            console.error('Failed to subscribe:', response.status);
+            throw new Error('Subscription failed with status: ' + response.status);
+        }
+    } catch (error) {
+        // Handle any errors that occur during the API call
+        console.error('Error subscribing to MailChimp:', error);
+        throw error; // Re-throw the error to be handled by the calling code
+    }
+};
+
+export const unsubscribeFromMailChimp = async (email) => {
+    try {
+        console.log("unsubscribe: email", email)
+        // Make the PUT request to the MailChimp API endpoint
+        const response = await api.put('mailchimp/unsubscribe/', {'email':email });
+
+        // Check for a successful response
+        if (response.status === 200) {
+            // console.log('Unsubscription successful');
+            return response.data; // Return the response data if needed
+        } else {
+            console.error('Failed to unsubscribe:', response.status);
+            throw new Error('Unsubscription failed with status: ' + response.status);
+        }
+    } catch (error) {
+        // Handle any errors that occur during the API call
+        console.error('Error unsubscribing from MailChimp:', error);
+        throw error; // Re-throw the error to be handled by the calling code
+    }
+};
+
+
+export const deleteMailChimpAccount = async (email) => {
+    try {
+        // Send DELETE request to MailChimp endpoint with email
+        const response = await api.delete('mailchimp/deletemember/', {
+            data: { email }, // Include the email in the request body
+        });
+        
+        if (response.status === 204) {
+            // Handle successful deletion
+            console.log('MailChimp account deleted successfully');
+            return true; // Return true to indicate success
+        } else {
+            // Handle unsuccessful deletion
+            console.error('Failed to delete MailChimp account', response);
+            return false; // Return false to indicate failure
+        }
+    } catch (error) {
+        // Handle any errors that occurred during the request
+        console.error('Error deleting MailChimp account:', error);
+        return false; // Return false to indicate failure
+    }
 };

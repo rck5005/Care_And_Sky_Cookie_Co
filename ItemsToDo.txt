@@ -1,7 +1,9 @@
 TO DO BEFORE FINAL 
 
 REQUIREMENTS:
-user remove from favorites
+need to create an ADMIN account to be able track all creations and handle mailchimp info
+
+need to create the "purchase" part of it so folks can buy their creations
 
 thoughts:
 fix favorites logic
@@ -38,6 +40,8 @@ create admin user that can see ALL COOKIE CREATIONS with option to delete any of
 
 STRETCH GOAL: keep track of how many times the cookie was purchased
 
+STRETCH GOAL: refactor all calls in utilities.jsx to match mailchimp subscribe call with payload
+
 
 FRONT END 
 
@@ -65,7 +69,8 @@ need to clear local storage when a user logs out so if another user logs in they
 ----somehow match it to the user name or something?
 
 
-
+use hooks for mailchimp to track if someone is subscribed or not
+--SignupPage, AccountPage (create the button that switches depending on what it is)
 
 currently ListItems.css has a max-height of 3200px for each itme-card-container, when the list grows i'll need to update this
 
@@ -83,40 +88,21 @@ separate update username, address, and password:
 --currently, when updating username, address or password it will try to update all three.
 ----AccountPage.jsx, utilities.jsx, user_app.views.py, user_app.urls
 
-when user creates a new creation, i make two api calls, one to create the cookie, the other to add
+when user creates a new creation, i make two api calls, one to create the cookie_creation, the other to add
 --it to the user's creations.
 ----in future perhaps add ability for cookie_creation to automatically update user_cooke_creation
 ----in the back end
 
-
-
 when creating a user creation, give user option to immediately add to favorites
 
+refactor to allow api/v1/users to handle signup/delete mailchimp account
+--right now i'm making two calls from the pages to do this:
+----two options, could consolidate in utilities.py (still making two api calls)
+----second option is to utilize during the apicall from signup
 
-
-possibly to mailchimp views for subscribe to introduce serializerclass Subscribe(TokenReq):
-    def post(self, request):
-        email = request.data.get('email')
-        first_name = request.data.get('first_name')
-        last_name = request.data.get('last_name')
-        
-        if not email:
-            return Response({"error": "Email is required"}, status=400)
-        
-        mailchimp_service = MailchimpService()
-        result = mailchimp_service.add_member_to_list(email, first_name, last_name)
-        
-        # Assuming the user is authenticated and you want to include their details in the response
-        user = request.user
-        user_serializer = UserSerializer(user)
-        
-        if result:
-            return Response({
-                "message": "Successfully subscribed",
-                "user": user_serializer.data
-            }, status=200)
-        else:
-            return Response({"error": "Failed to subscribe"}, status=400)
+need to sync up mailchimp and user account
+especially on AccountPage when "subscribing", right now I just have the api delete the account
+--and recreate
 
 
 

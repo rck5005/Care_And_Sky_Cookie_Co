@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { signUp } from '../utilities';
 import { useOutletContext } from 'react-router-dom';
+import { subscribeToMailChimp, unsubscribeFromMailChimp } from '../utilities';
 
 function SignUpPage() {
   const [email, setEmail] = useState('');
@@ -20,13 +21,18 @@ function SignUpPage() {
   const handleSubmit = async(e) => {
     e.preventDefault()
 
+    setUser(await signUp(email, firstName, lastName, password, displayName, address))
+
     if (!purchaseEmailsOptIn) {
       alert('You must acknowledge you will receive emails regarding your purchases to sign up.');
       return;
     }
 
-    if (newsletterOptIn) {
-      await subscribeToMailChimp(email);
+    await subscribeToMailChimp(email, firstName, lastName);
+
+    if (!newsletterOptIn) {
+      console.log("inside trying to unsubscribe")
+      await unsubscribeFromMailChimp(email);
     }
 
     if (password != confirmPassword) {
@@ -34,7 +40,6 @@ function SignUpPage() {
       return;
     } 
 
-    setUser(await signUp(email, firstName, lastName, password, displayName, address))
   }
 
   return (

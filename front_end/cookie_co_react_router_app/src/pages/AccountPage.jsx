@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import swal from 'sweetalert';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
-import { getInfo, updateNameAndAddress, updatePassword } from '../utilities'
+import { getInfo, updateNameAndAddress, updatePassword, deleteUser, deleteMailChimpAccount, subscribeToMailChimp, unsubscribeFromMailChimp } from '../utilities'
 import { useOutletContext } from 'react-router-dom'
-import { deleteUser } from '../utilities';
 
 function AccountPage() {
     const { user, setUser } = useOutletContext()
@@ -109,15 +108,57 @@ function AccountPage() {
     } catch (error) {
         console.error('Error updating password:', error);
     }
-};
+  };
 
-const handleClearPasswordFields = () => {
-    setOldPassword('');
-    setNewPassword('');
-    setConfirmNewPassword('');
+  const handleClearPasswordFields = () => {
+      setOldPassword('');
+      setNewPassword('');
+      setConfirmNewPassword('');
 
 
-};
+  };
+
+  const handleSubscribeMailChimpAccount = async () => {
+    try {
+
+        //this is here for lack of tracking if i have an account or not
+        const response0 = await deleteMailChimpAccount(userInfo.email)
+
+        const response = await subscribeToMailChimp(userInfo.email, newUserName, userInfo.user);
+        if (response) {
+            swal('Subscribed successfully!', 'You are now subscribed to the newsletter.', 'success');
+        }
+    } catch (error) {
+        console.error('Subscription failed:', error);
+        swal('Subscription failed', 'There was an error subscribing. Please try again.', 'error');
+    }
+  };
+
+  const handleUnsubscribeMailChimpAccount = async () => {
+      try {
+          const response = await unsubscribeFromMailChimp(userInfo.email);
+          if (response) {
+              swal('Unsubscribed successfully!', 'You have been unsubscribed from the newsletter.', 'success');
+          }
+      } catch (error) {
+          console.error('Unsubscription failed:', error);
+          swal('Unsubscription failed', 'There was an error unsubscribing. Please try again.', 'error');
+      }
+  };
+
+  const handleDeleteMailChimpAccount = async () => {
+    try {
+        const response = await deleteMailChimpAccount(userInfo.email);
+        if (response) {
+            swal('MailChimp account deleted successfully!', '', 'success');
+        } else {
+            swal('Failed to delete MailChimp account', '', 'error');
+        }
+    } catch (error) {
+        console.error('Error deleting MailChimp account:', error);
+        swal('Error deleting MailChimp account', 'Please try again later.', 'error');
+    }
+  };
 
   const handleDeleteClick = () => {
     swal({
@@ -130,7 +171,7 @@ const handleClearPasswordFields = () => {
           text: "Delete",
           value: true,
           visible:true,
-          className:"btn-danger",
+          className :"btn-danger",
         }
       },
       dangerMode: true,
@@ -146,7 +187,7 @@ const handleClearPasswordFields = () => {
               text: "Permanently Delete Account",
               value: true,
               visible: true,
-              className:"btn-danger",
+              className :"btn-danger",
             }
           },
           dangerMode: true,
@@ -179,7 +220,7 @@ const handleClearPasswordFields = () => {
       <h1>Account Page</h1>
 
         {/* Display current user details */}
-            <div className="mb-4">
+            <div className ="mb-4">
         <h4>Current Information</h4>
         <p><strong>Display Name:</strong> {userInfo.user}</p>
         <p><strong>Email:</strong> {userInfo.email}</p>
@@ -187,11 +228,11 @@ const handleClearPasswordFields = () => {
       </div>
 
       {/* Instructions for updating information */}
-      <div className="mb-4">
+      <div className ="mb-4">
         <h4>Please use the fields below to update your display name and address. </h4>
       </div>
 
-      <Row className="mb-3">
+      <Row className ="mb-3">
         <Col md={4}>
           <Form.Group controlId="formDisplayName">
             <Form.Label>Display Name</Form.Label>
@@ -222,11 +263,11 @@ const handleClearPasswordFields = () => {
         </Col>
       </Row>
 
-      <div className="mb-4">
+      <div className ="mb-4">
         <h4>Please use the fields below to update your password. </h4>
       </div>
 
-      <Row className="mb-3">
+      <Row className ="mb-3">
         <Col md={4}>
           <Form.Group controlId="formOldPassword">
             <Form.Label> Current Password </Form.Label>
@@ -269,13 +310,38 @@ const handleClearPasswordFields = () => {
         </Col>
       </Row>
 
-      <div className="mb-3 p-3 bg-light border rounded">
+      <h4>Manage your MailChimp Account</h4>
+
+      <Row className ="mb-3">
+          <Col md={6}>
+              <h6 className ="text-muted">
+                  This will sign you up for our newsletter sent via e-mail through MailChimp.
+              </h6>
+              <Button variant="success" onClick={handleSubscribeMailChimpAccount}>
+                  Click Here to Subscribe and Receive Newsletters
+              </Button>
+          </Col>  
+
+          <Col md={6}>
+              <h6 className ="text-muted">
+                  This will unsubscribe you from receiving newsletters; however, you will still receive emails regarding active orders.
+              </h6>
+              <Button variant="danger" onClick={handleUnsubscribeMailChimpAccount}>
+                  Click Here to Unsubscribe and Stop Receiving Newsletters
+              </Button>
+          </Col>
+      </Row>
+
+      <div className ="mb-3 p-3 bg-light border rounded">
         <strong>Warning:</strong> Deleting your account is permanent and cannot be undone. 
         You will be logged out and redirected to the login page upon deletion.
       </div>
       <Button onClick={handleDeleteClick} variant="outline-danger">Permanently Delete Account</Button>
 
+    
+
     </Container>
+    
 
     
   );

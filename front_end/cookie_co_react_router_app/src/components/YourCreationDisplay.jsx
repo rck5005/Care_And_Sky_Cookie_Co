@@ -48,6 +48,7 @@ const YourCreationDisplay = ({ YourCreation, setYourCreation }) => {
             const result2 = await addCreationToUser(result.id)
             zeroizeYourCreationValue()
             location.reload()
+            alert('Creation Created!! Check "My Creations" to view your creations')
             }
             catch(error) {
                 console.error('Created Creation, but failed to add to User Cookie Creation.')

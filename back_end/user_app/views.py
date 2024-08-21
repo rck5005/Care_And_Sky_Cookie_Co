@@ -17,6 +17,7 @@ from .models import User
 # Create your views here.
 class Sign_up(APIView):
     def post(self, request):
+        print("insdi")
         data = request.data.copy()
         data['username'] = request.data.get("username", request.data.get("email"))
         new_user = User(**data)

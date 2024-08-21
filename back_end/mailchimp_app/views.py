@@ -17,7 +17,7 @@ from user_app.views import TokenReq
 # Create your views here.
 
 
-class Subscribe(TokenReq):
+class Subscribe(APIView):
     def post(self, request):
         email = request.data.get('email')
         first_name = request.data.get('first_name')
@@ -30,13 +30,13 @@ class Subscribe(TokenReq):
         result = mailchimp_service.add_member_to_list(email, first_name, last_name)
         
         if result:
-            return Response({"message": "Successfully subscribed"}, status=200)
+            return Response({"message": "Successfully subscribed"}, status=201)
         else:
             return Response({"error": "Failed to subscribe"}, status=400)
         
 
 class Unsubscribe(TokenReq):
-    def post(self, request):
+    def put(self, request):
         email = request.data.get('email')
         
         if not email:
@@ -52,7 +52,7 @@ class Unsubscribe(TokenReq):
         
 
 class DeleteMember(TokenReq):
-    def post(self, request):
+    def delete(self, request):
         email = request.data.get('email')
         
         if not email:
@@ -62,6 +62,6 @@ class DeleteMember(TokenReq):
         result = mailchimp_service.delete_member_from_list(email)
         
         if result:
-            return Response({"message": "Successfully deleted"}, status=200)
+            return Response({"message": "Successfully deleted"}, status=204)
         else:
             return Response({"error": "Failed to delete"}, status=400)
