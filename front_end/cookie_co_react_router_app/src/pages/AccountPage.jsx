@@ -102,7 +102,7 @@ function AccountPage() {
           alert('Password updated')
         }
         else {
-          alert('Current password incorrec. Password not updated.')
+          alert('Current password incorrect. Password not updated.')
         }
         // Optionally clear the password fields
         handleClearPasswordFields();

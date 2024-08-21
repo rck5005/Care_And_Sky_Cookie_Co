@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap'
-import { createCreation } from  '../utilities'
+import { addCreationToUser, createCreation, zeroizeYourCreationValue } from  '../utilities'
 
 const YourCreationDisplay = ({ YourCreation, setYourCreation }) => {
     const [showModal, setShowModal] = useState(false);
@@ -22,7 +22,7 @@ const YourCreationDisplay = ({ YourCreation, setYourCreation }) => {
     const handleShow = () => setShowModal(true);
     const handleClose = () => setShowModal(false);
 
-    const handleSave = async () => {
+    const handleSaveUserCreation = async () => {
 
         const storedCreation = JSON.parse(localStorage.getItem('YourCreation'));
 
@@ -35,13 +35,24 @@ const YourCreationDisplay = ({ YourCreation, setYourCreation }) => {
             topping: storedCreation.topping,
             decoration: storedCreation.decoration,
             prev_purchased: prevPurchased,
-            image: newURL
+            image: newURL,
         };
 
         try {
             // Call the createCreation function
             const result = await createCreation(creation);
-            console.log('Creation result:', result);
+            // console.log('Creation result:', result.id);
+
+            try{
+            // Call function to add to users creations
+            const result2 = await addCreationToUser(result.id)
+            zeroizeYourCreationValue()
+            location.reload()
+            }
+            catch(error) {
+                console.error('Created Creation, but failed to add to User Cookie Creation.')
+            }
+
         } catch (error) {
             console.error('Failed to create creation:', error);
         }
@@ -55,6 +66,7 @@ const YourCreationDisplay = ({ YourCreation, setYourCreation }) => {
     return (
         <div>
             <h2>Your Potential Creation</h2>
+            <h6>Selected Flavor, Cookie Cutter, Decoration and Topping will be removed upon logging out.</h6>
             <p>
                 <strong>Flavor:</strong> {YourCreation.flavorName || 'None selected'}
                 {YourCreation.flavor && (
@@ -126,7 +138,7 @@ const YourCreationDisplay = ({ YourCreation, setYourCreation }) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleSave}>
+                    <Button variant="primary" onClick={handleSaveUserCreation}>
                         Save
                     </Button>
                 </Modal.Footer>

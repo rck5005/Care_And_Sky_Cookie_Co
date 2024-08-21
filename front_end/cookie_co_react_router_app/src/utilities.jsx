@@ -4,11 +4,14 @@ export const api = axios.create({
     baseURL:"http://127.0.0.1:8000/api/v1/"
 })
 
-export const signUp = async(email, password, display_name) => {
+export const signUp = async(email, first_name, last_name, password, display_name, address) => {
     let response = await api.post("users/signup/", {
         'email':email,
+        'first_name':first_name,
+        'last_name':last_name,
         'password':password,
         'display_name':display_name,
+        'address':address
     })
 
     if (response.status === 201){
@@ -41,6 +44,7 @@ export const logOut = async() => {
     let response = await api.post("users/logout/")
     if(response.status === 204){
         localStorage.removeItem("token")
+        localStorage.removeItem("YourCreation")
         delete api.defaults.headers.common["Authorization"]
         return null
     }
@@ -147,4 +151,57 @@ export const generateAIResponse = async (prompt) => {
         console.error("Error generating AI response:", error);
         alert("Something went wrong while generating the response.");
     }
+};
+
+export const addCreationToUser = async (cookieCreationId) => {
+    try {
+        // Make the POST request to the API to add/remove the creation
+        const response = await api.post(`mycookies/addremove/${cookieCreationId}/`, {});
+
+        // Check if the response status indicates success
+        if (response.status === 200 || response.status === 201) {
+            // Return the response data on success
+            return response.data;
+        } else {
+            // Handle unexpected status codes
+            alert("Failed to add/remove creation. Status code: " + response.status);
+        }
+    } catch (error) {
+        // Handle errors
+        console.error("Error adding/removing creation:", error);
+        alert("Something went wrong while trying to add/remove the creation.");
+    }
+};
+
+export const deleteCreationFromUser = async (cookieCreationId) => {
+    try {
+        // Make the DELETE request to the API to remove the creation
+        const response = await api.delete(`mycookies/addremove/${cookieCreationId}/`);
+
+        // Check if the response status indicates success
+        if (response.status === 204) {
+            // Return a success message or handle accordingly
+            return "Creation successfully removed.";
+        } else {
+            // Handle unexpected status codes
+            alert("Failed to remove creation. Status code: " + response.status);
+        }
+    } catch (error) {
+        // Handle errors
+        console.error("Error removing creation:", error);
+        alert("Something went wrong while trying to remove the creation.");
+    }
+};
+
+export const zeroizeYourCreationValue = () => {
+    localStorage.setItem('YourCreation', JSON.stringify({
+        "flavor": null,
+        "flavorName": "",
+        "topping": null,
+        "toppingName": "",
+        "cookieCutter": null,
+        "cookieCutterName": "",
+        "decoration": null,
+        "decorationName": ""
+    }));
 };

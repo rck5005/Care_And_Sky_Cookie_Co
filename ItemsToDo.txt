@@ -6,13 +6,15 @@ user remove from favorites
 thoughts:
 fix favorites logic
 
+when delete account on front end, ensure all user creations are deleted that weren't previously sold
+
 
 
 lists.jsx line 193.
 --currently creations/all/ "add to favorites" button doesn't display correctly, but you can add to favorites
 -----issue is cookiecreation doesn't have "is_favorite", will need to 
 -----compare each creation with the creations in the users "favorites" table and 
------rander the button that way.  
+-----render the button that way.  
 
 BACK END
 
@@ -24,10 +26,15 @@ VALIDATIONS:
 ----user_cookie_creation(adjustfavorites, delete, if it's already deleted)
 
 
-
-user created cookie_creation needs to automatically save to cookie_creation, 
+user created cookie_creation needs to automatically save to user_cookie_creation as well, 
 --it is automatically private (not previously purchased)
 --only way to make public is to change previously purchased
+--currently handled on front end by making two api calls in "YourCreationDisplay"
+
+
+create admin user that can see ALL COOKIE CREATIONS with option to delete any of them
+--right now we have some cookie creations that no one can see (previous users created cookie,
+--then deleted account without purchasing)
 
 STRETCH GOAL: keep track of how many times the cookie was purchased
 
@@ -46,19 +53,44 @@ addremoveCreation.  going to be difficult. add another button to items only in "
 Confirmation for Delete Account before deleting
 --have user enter their current password to successfully delete their account
 
-DOWN THE ROAD: Handle all possible HTTP responses from the back end to front end.. right now just handling what is supposed to happen.
-
 notify user when removing a variation from their potential creation, right now it just disappears
 
 allow visibility of about page at all times whether logged in or logged out
 
 create an alert if someone tries to create an account that is already taken
 
+need to clear local storage when a user logs out so if another user logs in they don't have the
+--same CREATION
+----DID IT, but now i realize i might be able to save it to cookies somehow and
+----somehow match it to the user name or something?
+
+
+
+
+currently ListItems.css has a max-height of 3200px for each itme-card-container, when the list grows i'll need to update this
+
+makecreation/
+YourCreationDisplay.jsx
+when clicking "Add New Creation" ensure at least a flavor and cookie cutter are selected
+--also, after creation created, clear values of popup box
+give option for user to clear all items at once with another submit button
+
+DOWN THE ROAD: Handle all possible HTTP responses from the back end to front end.. right now just handling what is supposed to happen.
+
 
 FRONT END/BACK END
 separate update username, address, and password:
 --currently, when updating username, address or password it will try to update all three.
 ----AccountPage.jsx, utilities.jsx, user_app.views.py, user_app.urls
+
+when user creates a new creation, i make two api calls, one to create the cookie, the other to add
+--it to the user's creations.
+----in future perhaps add ability for cookie_creation to automatically update user_cooke_creation
+----in the back end
+
+
+
+when creating a user creation, give user option to immediately add to favorites
 
 
 
@@ -117,6 +149,8 @@ login page and sign-up page
 
 BACK END/FRONT END
 
+ability for user to add address when signing up instead of changing it later
+--signup page
 
 
 

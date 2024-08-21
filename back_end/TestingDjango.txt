@@ -84,3 +84,17 @@ create creation
     "prev_purchased": false,
     "image": "http://example.com/image.jpg"
 }
+
+create creation and add to user
+
+{
+    "name": "Chocolate Chip Delight",
+    "flavor": 1,
+    "description": "A delicious chocolate chip cookie with extra chocolate chunks.",
+    "cookie_cutter": 2,
+    "topping": 3,
+    "decoration": 4,
+    "prev_purchased": false,
+    "image": "http://example.com/image.jpg",
+    "add_to_user": true,
+}

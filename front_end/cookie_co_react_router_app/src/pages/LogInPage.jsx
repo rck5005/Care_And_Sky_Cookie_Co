@@ -15,23 +15,36 @@ function LogInPage() {
 
   return (
     <>
-    <div>LoginPage</div>
-    <form onSubmit={(e)=> handleSubmit(e)}>
-        <input value={email} 
-            onChange={(e)=>setEmail(e.target.value)} 
-            type="email" 
-            placeholder="name@domain.com"
-            required
-        />
-        <input value={password} 
-            onChange={(e)=>setPassword(e.target.value)} 
-            type="password" 
-            placeholder="enter password"
-            required
-        />
-        <input type="submit" value="log in"/>
+    <h1>LoginPage</h1>
+    <form onSubmit={handleSubmit}>
+            <div className ="mb-3">
+                <label htmlFor ="email" className ="form-label">Email address</label>
+                <input 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)} 
+                    type="email" 
+                    className ="form-control" 
+                    id="email" 
+                    placeholder="name@domain.com" 
+                    required 
+                />
+            </div>
 
-    </form>
+            <div className ="mb-3">
+                <label htmlFor ="password" className ="form-label">Password</label>
+                <input 
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} 
+                    type="password" 
+                    className ="form-control" 
+                    id="password" 
+                    placeholder="Enter password" 
+                    required 
+                />
+            </div>
+
+            <button type="submit" className ="btn btn-primary">Log In</button>
+        </form>
 
     </>
   )

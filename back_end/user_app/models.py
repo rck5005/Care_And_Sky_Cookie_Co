@@ -8,4 +8,4 @@ class User(AbstractUser):
     display_name = models.CharField(default='unknown', max_length=50)
     address = models.CharField(default='unknown', max_length=255)
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['first_name', 'last_name']

@@ -43,10 +43,11 @@ class CreateNewCreation(TokenReq):
     def post(self, request):
         try:
             serializer = CookieCreationPKSerializer(data=request.data)
-            print("serializer: ", serializer)
+            # print("serializer: ", serializer)
         
             if serializer.is_valid():
                 serializer.save()
+                #add to user by sending request to AddRemoveCreation
                 return Response(serializer.data, status=HTTP_201_CREATED)
             else:
                 # Return validation errors if serializer is not valid
