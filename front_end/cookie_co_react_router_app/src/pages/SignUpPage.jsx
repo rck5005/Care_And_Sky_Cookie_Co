@@ -13,7 +13,7 @@ function SignUpPage() {
   const [address, setAddress] = useState('');
 
   const [newsletterOptIn, setNewsletterOptIn] = useState(false);
-  const [purchaseEmailsOptIn, setPurchaseEmailsOptIn] = useState(true);
+  const [confirmEmailsOptIn, setConfirmEmailsOptIn] = useState(true);
 
   const {setUser} = useOutletContext()
   const {setIsSubscribed} = useOutletContext()
@@ -22,17 +22,18 @@ function SignUpPage() {
   const handleSubmit = async(e) => {
     e.preventDefault()
 
-    setUser(await signUp(email, firstName, lastName, password, displayName, address))
-
-    if (!purchaseEmailsOptIn) {
+    if (!confirmEmailsOptIn) {
       alert('You must acknowledge you will receive emails regarding your purchases to sign up.');
       return;
     }
 
+    setUser(await signUp(email, firstName, lastName, password, displayName, address))
+
     await subscribeToMailChimp(email, firstName, lastName);
+    setIsSubscribed(true)
 
     if (!newsletterOptIn) {
-      console.log("inside trying to unsubscribe")
+    //   console.log("inside trying to unsubscribe")
       await unsubscribeFromMailChimp(email);
       setIsSubscribed(false)
     }
@@ -155,11 +156,11 @@ function SignUpPage() {
                 <input
                     className ="form-check-input"
                     type="checkbox"
-                    id="purchaseEmailsOptIn"
-                    checked={purchaseEmailsOptIn}
-                    onChange={(e) => setPurchaseEmailsOptIn(e.target.checked)}
+                    id="confirmEmailsOptIn"
+                    checked={confirmEmailsOptIn}
+                    onChange={(e) => setConfirmEmailsOptIn(e.target.checked)}
                 />
-                <label className ="form-check-label" htmlFor ="purchaseEmailsOptIn">
+                <label className ="form-check-label" htmlFor ="confirmEmailsOptIn">
                     I understand I will automatically recieve e-mails regarding my active orders.
                 </label>
             </div>

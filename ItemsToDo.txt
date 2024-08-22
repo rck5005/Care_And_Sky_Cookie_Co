@@ -4,12 +4,17 @@ REQUIREMENTS:
 need to create an ADMIN account to be able track all creations and handle mailchimp info
 
 need to create the "purchase" part of it so folks can buy their creations
+--need to add a calendar timeslot function to the purchase page so people
+--can sign up for a timeslot that will fit their anticipated arrival time
+
+demoed to sister, she already added a "packaging" table that I'll need to incorporate
+--probably need to redo the models
+
 
 thoughts:
 fix favorites logic
 
 when delete account on front end, ensure all user creations are deleted that weren't previously sold
-
 
 
 lists.jsx line 193.
@@ -69,6 +74,8 @@ need to clear local storage when a user logs out so if another user logs in they
 ----somehow match it to the user name or something?
 
 
+for all variations, change code in itemcard.jsx to render if an item is already selected for potential
+--creation, to give the option to remove it
 
 
 currently ListItems.css has a max-height of 3200px for each itme-card-container, when the list grows i'll need to update this
@@ -84,6 +91,7 @@ DOWN THE ROAD: Handle all possible HTTP responses from the back end to front end
 
 account page:
 everything seems crunched together
+
 
 
 
