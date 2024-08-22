@@ -3,12 +3,13 @@ TO DO BEFORE FINAL
 REQUIREMENTS:
 need to create an ADMIN account to be able track all creations and handle mailchimp info
 
-need to create the "purchase" part of it so folks can buy their creations
+need to create the "purchase" section of it so folks can buy creations
+--ETSY
 --need to add a calendar timeslot function to the purchase page so people
 --can sign up for a timeslot that will fit their anticipated arrival time
 
 demoed to sister, she already added a "packaging" table that I'll need to incorporate
---probably need to redo the models
+--probably need to redo the modelsq
 
 
 thoughts:
